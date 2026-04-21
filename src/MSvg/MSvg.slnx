@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MSvg.All/MSvg.All.csproj" />
+  <Project Path="MSvg.Tests/MSvg.Tests.csproj" />
+</Solution>
