@@ -1,7 +1,6 @@
 ﻿using MSvg.All;
 
 namespace MSvg.Tests;
-
 [TestClass]
 public sealed class TestNumberIcons
 {
