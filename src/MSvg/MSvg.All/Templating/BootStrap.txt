@@ -22,7 +22,7 @@ namespace {{data.nameSpace}} {
 		};
 
 
-		public static global::SvgIconGenerator.IconDto FromName(string name){
+		public static global::SvgIconGenerator.IconDto? FromName(string name){
 		{{ for file in filterForFolder }}
 		// {{ 
 		result = file.namePascal

@@ -17,6 +17,9 @@
 		<AdditionalFiles Include="Icons/Lucide/*.svg" />
 		<AdditionalFiles Include="Icons/Bootstrap/*.svg" />
 		<AdditionalFiles Include="Icons/TailwindlabsHeroicons/*.svg" />
+		<AdditionalFiles Include="Icons/glinckerthesvg/*.svg" />
+
+		
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
@@ -25,12 +28,13 @@
 		<AdditionalFiles Include="Templating/BootStrap.txt" />
 		<AdditionalFiles Include="Templating/Lucide.txt" />
 		<AdditionalFiles Include="Templating/TailwindlabsHeroicons.txt" />
+		<AdditionalFiles Include="Templating/glinckerthesvg.txt" />
 	</ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)/GX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
-	<PropertyGroup >
+	<PropertyGroup>
 	  <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	  <WarningsNotAsErrors>NU1900</WarningsNotAsErrors>
 	</PropertyGroup>

@@ -7,12 +7,18 @@ public static class AllIconNames
     private static Func<string, SvgIconGenerator.IconDto?>[] IconGenerator;
     static AllIconNames()
     {
-        IconNames = [.. LucideIcons.IconNames, .. BootStrapIcons.IconNames, .. TailwindlabsHeroicons.IconNames];
+        IconNames = [
+            .. LucideIcons.IconNames, 
+            .. BootStrapIcons.IconNames, 
+            .. TailwindlabsHeroicons.IconNames,
+            .. GlinckerTheSvg.IconNames
+            ];
         IconGenerator =
         [
             LucideIcons.FromName,
             BootStrapIcons.FromName,
-            TailwindlabsHeroicons.FromName
+            TailwindlabsHeroicons.FromName,
+            GlinckerTheSvg.FromName
         ];
     }
     public static IEnumerable<SvgIconGenerator.IconDto> GetFromName(string name)
