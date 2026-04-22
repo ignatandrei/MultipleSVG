@@ -14,19 +14,25 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<AdditionalFiles Include="Icons/lucide/*.svg" />
+		<AdditionalFiles Include="Icons/Lucide/*.svg" />
+		<AdditionalFiles Include="Icons/Bootstrap/*.svg" />
+		<AdditionalFiles Include="Icons/TailwindlabsHeroicons/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
-		<Watch Include="**\*.txt"  />
+		<Watch Include="**\*.txt" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Remove="Templating\FileInTemplating.txt" />
-	</ItemGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="Templating\FileInTemplating.txt" />
+		<AdditionalFiles Include="Templating/BootStrap.txt" />
+		<AdditionalFiles Include="Templating/Lucide.txt" />
+		<AdditionalFiles Include="Templating/TailwindlabsHeroicons.txt" />
 	</ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)/GX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
+	<PropertyGroup >
+	  <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	  <WarningsNotAsErrors>NU1900</WarningsNotAsErrors>
+	</PropertyGroup>
+	
 </Project>

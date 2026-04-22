@@ -11,7 +11,7 @@
     <PackageReference Include="MSTest" Version="4.0.2" />
   </ItemGroup>
 	<ItemGroup>
-		<Watch Include="D:\eu\GitHub\MultipleSVG\src\MSvg\MSvg.All\Templating\FileInTemplating.txt"  />
+		<Watch Include="D:\eu\GitHub\MultipleSVG\src\MSvg\MSvg.All\Templating\*.txt"  />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSvg.All\MSvg.All.csproj" />
