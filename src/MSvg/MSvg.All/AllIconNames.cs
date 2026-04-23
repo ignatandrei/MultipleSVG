@@ -30,4 +30,31 @@ public static class AllIconNames
         }
 
     }
+    public static string[] MaybeIs(string name)
+    {
+        if (IconNames.Count == 0)
+        {
+            return Array.Empty<string>();
+        }
+        var min = int.MaxValue;
+        var matches = new List<string>();
+
+        foreach (var iconName in IconNames)
+        {
+            var distance = Fastenshtein.Levenshtein.Distance(name, iconName);
+
+            if (distance < min)
+            {
+                min = distance;
+                matches.Clear();
+                matches.Add(iconName);
+            }
+            else if (distance == min)
+            {
+                matches.Add(iconName);
+            }
+        }
+
+        return matches.ToArray();
+    }
 }

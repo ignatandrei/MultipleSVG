@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Fastenshtein" Version="1.0.12" />
 		<PackageReference Include="RSCG_Templating" Version="2026.421.1830" OutputItemType="Analyzer" />
 		<PackageReference Include="RSCG_TemplatingCommon" Version="2026.421.1830" />
 		<PackageReference Include="SvgIconGenerator" Version="0.0.4">
