@@ -1,0 +1,12 @@
+{
+ "scripts": {
+    "clean": "dotnet r clean:*",
+    "clean:artifacts": "dotnet rimraf artifacts", 
+    "clean:bin": "dotnet rimraf **/bin **/obj",
+    "restore": "dotnet restore",
+    "build": "dotnet build --no-restore --configuration Release",
+    "test": "dotnet test --no-build --configuration Release",
+    "ci": "dotnet r restore && dotnet r build && dotnet r test",
+    "pack": "dotnet pack MSvg.All/MSvg.All.csproj --configuration Release --no-build --no-restore --output ./artifacts"
+  }
+}

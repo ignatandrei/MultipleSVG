@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "run-script": {
+      "version": "0.6.0",
+      "commands": [
+        "r"
+      ],
+      "rollForward": false
+    },
+    "rimraf": {
+      "version": "0.3.1",
+      "commands": [
+        "rimraf"
+      ],
+      "rollForward": false
+    }
+  }
+}

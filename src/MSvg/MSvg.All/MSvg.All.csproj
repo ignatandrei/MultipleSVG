@@ -4,6 +4,19 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackageId>MSvg.All</PackageId>
+    <PackageVersion Condition="'$(PackageVersion)' == ''">1.0.0</PackageVersion>
+    <Authors>Ignat Andrei</Authors>
+    <Description>Multiple SVG icon library generated from Lucide, Bootstrap, Heroicons, and glinckerthesvg sources.</Description>
+    <PackageTags>svg;icons;blazor;components</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ignatandrei/MultipleSVG</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ignatandrei/MultipleSVG</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Fastenshtein" Version="1.0.12" />
@@ -30,6 +43,9 @@
 		<AdditionalFiles Include="Templating/Lucide.txt" />
 		<AdditionalFiles Include="Templating/TailwindlabsHeroicons.txt" />
 		<AdditionalFiles Include="Templating/glinckerthesvg.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\README.md" Pack="true" PackagePath="\" Link="README.md" />
 	</ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
