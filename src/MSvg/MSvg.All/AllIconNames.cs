@@ -32,8 +32,29 @@ public static class AllIconNames
     }
     public static string[] MaybeIs(string name)
     {
-        var distances = IconNames.ToDictionary(it => it, it => Fastenshtein.Levenshtein.Distance(name, it));
-        var min  = distances.OrderBy(it=>it.Value).First().Value;
-        return distances.Where(it => it.Value == min).Select(it => it.Key).ToArray();
+        if (IconNames.Count == 0)
+        {
+            return Array.Empty<string>();
+        }
+        var min = int.MaxValue;
+        var matches = new List<string>();
+
+        foreach (var iconName in IconNames)
+        {
+            var distance = Fastenshtein.Levenshtein.Distance(name, iconName);
+
+            if (distance < min)
+            {
+                min = distance;
+                matches.Clear();
+                matches.Add(iconName);
+            }
+            else if (distance == min)
+            {
+                matches.Add(iconName);
+            }
+        }
+
+        return matches.ToArray();
     }
 }

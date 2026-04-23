@@ -16,8 +16,8 @@ public sealed class TestLevenshtein
     [TestMethod]
     public void Similar()
     {
-        var name = "azure";
+        var name = "arrow-rigt";
         var similar = AllIconNames.MaybeIs(name);
-        Assert.IsGreaterThan(0, similar.Length);
+        Assert.IsTrue(similar.Contains("arrow-right"));
     }
 }
