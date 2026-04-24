@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MSvg.All\MSvg.All.csproj" />
+    <ProjectReference Include="..\MSvg.Blazor\MSvg.Blazor.csproj" />
   </ItemGroup>
 
 </Project>

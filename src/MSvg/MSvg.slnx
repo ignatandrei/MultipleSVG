@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="MSvg.All/MSvg.All.csproj" />
+  <Project Path="MSvg.Blazor/MSvg.Blazor.csproj" />
   <Project Path="MSVG.BlazorShow/MSVG.BlazorShow.csproj" Id="fe96892a-20ef-4fd4-8e18-e4cb651d21a5" />
   <Project Path="MSvg.Tests/MSvg.Tests.csproj" />
 </Solution>
