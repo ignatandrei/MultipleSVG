@@ -21,7 +21,7 @@ public static class AllIconNames
             GlinckerTheSvg.FromName
         ];
     }
-    public static IEnumerable<SvgIconGenerator.IconDto> GetFromName(string name)
+    public static IEnumerable<SvgIconGenerator.IconDto> FromName(string name)
     {
         foreach (var f in IconGenerator)
         {
