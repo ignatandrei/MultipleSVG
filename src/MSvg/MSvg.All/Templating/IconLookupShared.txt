@@ -22,41 +22,7 @@ func containsFolder(sv, folderName)
 end
 }}
 {{ if data.className == "IconLookupShared" }}
-namespace {{data.nameSpace}} {
-
-	static partial class {{data.className}} {
-		public static string[] MaybeIs(string name, string[] iconNames)
-		{
-			var min = int.MaxValue;
-			var matches = new global::System.Collections.Generic.List<string>();
-
-			foreach (var iconName in iconNames)
-			{
-				var distance = global::Fastenshtein.Levenshtein.Distance(name, iconName);
-
-				if (distance < min)
-				{
-					min = distance;
-					matches.Clear();
-					matches.Add(iconName);
-				}
-				else if (distance == min)
-				{
-					matches.Add(iconName);
-				}
-			}
-
-			return matches.ToArray();
-		}
-
-		public static global::SvgIconGenerator.IconDto? FromName(
-			string name,
-			global::System.Collections.Generic.IReadOnlyDictionary<string, global::SvgIconGenerator.IconDto?> iconsByName)
-		{
-			return iconsByName.TryGetValue(name, out var icon) ? icon : null;
-		}
-	}
-}
+//nothing to do here	
 {{ else }}
 {{ 
 folderName = folderNameForClass data.className
@@ -70,11 +36,24 @@ filterForFolder = pathFiles | array.filter @containsCurrentFolder
 namespace {{data.nameSpace}} {
 
 	static partial class {{data.className}} {
+		
 		public static string[] IconNames = new []{
 		{{ for file in filterForFolder }}
 		"{{file.nameNoExt}}",
 		{{end}}
 		};
+
+		public static Dictionary<string,string[]> IconAliases = new Dictionary<string,string[]> {
+		{{ for file in filterForFolder }}
+		{"{{file.nameNoExt}}", new []{
+			"{{file.nameNoExt}}",
+			"{{file.nameNoExt}}".NormalizeMe(),
+			"{{file.namePascal}}",
+			"{{file.namePascal}}".NormalizeMe()
+		}},
+		{{end}}
+		};
+
 
 		private static readonly global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?> IconsByName = CreateIconsByName();
 
@@ -92,7 +71,7 @@ namespace {{data.nameSpace}} {
 			return icons;
 		}
 
-		public static string[] MaybeIs(string name) => IconLookupShared.MaybeIs(name, IconNames);
+		public static IEnumerable<string>  MaybeIs(string name) => IconLookupShared.MaybeIs(name, IconAliases);
 
 		public static global::SvgIconGenerator.IconDto? FromName(string name) => IconLookupShared.FromName(name, IconsByName);
 	}

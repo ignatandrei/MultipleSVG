@@ -5,7 +5,7 @@ public static class MyExtensions
 {
     extension(string value)
     {
-        public string Normalize()
+        public string NormalizeMe()
         {
             if (string.IsNullOrWhiteSpace(value))
             {

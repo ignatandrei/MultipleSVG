@@ -12,7 +12,7 @@ public sealed record IconEntry(
     {
         if(string.IsNullOrWhiteSpace(key)) return;
         SearchKeys.Add(key);
-        SearchKeys.Add(key.Normalize());
+        SearchKeys.Add(key.NormalizeMe());
 
     }
     public bool Contains(string name)
