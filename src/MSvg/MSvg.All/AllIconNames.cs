@@ -11,14 +11,14 @@ public static class AllIconNames
             .. LucideIcons.IconNames, 
             .. BootStrapIcons.IconNames, 
             .. TailwindlabsHeroicons.IconNames,
-            .. GlinckerTheSvg.IconNames
+            .. GlinckerTheSvgIcons.IconNames
             ];
         IconGenerator =
         [
             LucideIcons.FromName,
             BootStrapIcons.FromName,
             TailwindlabsHeroicons.FromName,
-            GlinckerTheSvg.FromName
+            GlinckerTheSvgIcons.FromName
         ];
     }
     public static IEnumerable<SvgIconGenerator.IconDto> FromName(string name)

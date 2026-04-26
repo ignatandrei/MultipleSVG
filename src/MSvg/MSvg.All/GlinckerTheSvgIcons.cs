@@ -5,6 +5,6 @@ using System.Text;
 namespace MSvg.All;
 
 [SvgIconGenerator.GenerateIcons("**/glinckerthesvg/*.svg")]
-[RSCG_TemplatingCommon.IGenerateDataFromAdditionalFiles("glinckerthesvg")]
-public static partial class GlinckerTheSvg;
+[RSCG_TemplatingCommon.IGenerateDataFromAdditionalFiles("IconLookupShared")]
+public static partial class GlinckerTheSvgIcons;
 
