@@ -119,7 +119,7 @@ else if (hasSearchText && FilteredIcons.Count == 0)
             yield return new IconEntry(
                 library.Name,
                 icon,
-                Normalize($"{library.Name} {icon.Name}"),
+                new HashSet<string> { Normalize($"{library.Name} {icon.Name}") },
                 Normalize(icon.Name));
         }
     }
@@ -145,7 +145,7 @@ else if (hasSearchText && FilteredIcons.Count == 0)
         }
 
         var directMatches = allIcons
-            .Where(entry => entry.SearchKey.Contains(normalizedTerm, StringComparison.Ordinal))
+            .Where(entry => entry.Contains(normalizedTerm))
             .ToArray();
 
         if (directMatches.Length > 0)
@@ -253,11 +253,6 @@ else if (hasSearchText && FilteredIcons.Count == 0)
         IReadOnlyList<string> IconNames,
         Func<string, IconDto?> FromName);
 
-    private sealed record IconEntry(
-        string Library,
-        IconDto Icon,
-        string SearchKey,
-        string NormalizedName);
 
     private sealed record RankedName(string Name, int Distance);
 }
