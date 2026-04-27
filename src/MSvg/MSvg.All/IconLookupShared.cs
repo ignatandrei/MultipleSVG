@@ -1,7 +1,8 @@
 namespace MSvg.All;
 
-internal static partial class IconLookupShared
+public static partial class IconLookupShared
 {
+    
     public static IEnumerable<string> MaybeIs(string name, Dictionary<string, string[]> aliases)
     {
         foreach (var kvp in aliases)
@@ -44,6 +45,7 @@ internal static partial class IconLookupShared
         string name,
         IReadOnlyDictionary<string, global::SvgIconGenerator.IconDto?> iconsByName)
     {
+        
         return iconsByName.TryGetValue(name, out var icon) ? icon : null;
     }
 }

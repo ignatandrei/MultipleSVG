@@ -10,7 +10,7 @@ public sealed class TestLevenshtein
     {
         var name = "arrow-right";
         var similar = AllIconNames.MaybeIs(name);
-        Assert.IsTrue(similar.Contains("arrow-right"));
+        Assert.IsTrue(similar.Select(it=>it.name).Contains("arrow-right"));
 
     }
     [TestMethod]
@@ -18,6 +18,6 @@ public sealed class TestLevenshtein
     {
         var name = "arrow-rigt";
         var similar = AllIconNames.MaybeIs(name);
-        Assert.IsTrue(similar.Contains("arrow-right"));
+        Assert.IsTrue(similar.Select(it => it.name).Contains("arrow-right"));
     }
 }

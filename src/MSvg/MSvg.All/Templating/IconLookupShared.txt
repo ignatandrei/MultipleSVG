@@ -35,8 +35,9 @@ filterForFolder = pathFiles | array.filter @containsCurrentFolder
 //Number icons {{folderName}} {{filterForFolder.size }} 
 namespace {{data.nameSpace}} {
 
-	static partial class {{data.className}} {
+	partial class {{data.className}} {
 		
+		public static string NameLibrary = "{{folderName}}";
 		public static string[] IconNames = new []{
 		{{ for file in filterForFolder }}
 		"{{file.nameNoExt}}",
@@ -55,16 +56,19 @@ namespace {{data.nameSpace}} {
 		};
 
 
-		private static readonly global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?> IconsByName = CreateIconsByName();
+		private static readonly Lazy<global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?>> IconsByName = new(CreateIconsByName);
 
 		private static global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?> CreateIconsByName()
 		{
+		System.Diagnostics.Debugger.Break();
+		global::SvgIconGenerator.IconDto? x;
 			var icons = new global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?>(
 				global::System.StringComparer.OrdinalIgnoreCase);
 		{{ for file in filterForFolder }}
 		// {{ 
 		result = file.namePascal
 		}}
+		x= {{data.className}}.{{result}};
 			icons["{{result}}"] = {{result}};
 			icons["{{file.nameNoExt}}"] = {{result}};
 		{{ end }}
@@ -73,7 +77,7 @@ namespace {{data.nameSpace}} {
 
 		public static IEnumerable<string>  MaybeIs(string name) => IconLookupShared.MaybeIs(name, IconAliases);
 
-		public static global::SvgIconGenerator.IconDto? FromName(string name) => IconLookupShared.FromName(name, IconsByName);
+		public static global::SvgIconGenerator.IconDto? FromName(string name) => IconLookupShared.FromName(name, IconsByName.Value);
 	}
 }
 {{ end }}

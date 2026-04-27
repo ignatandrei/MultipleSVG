@@ -44,29 +44,25 @@ else if (hasSearchText && FilteredIcons.Count == 0)
             </div>
             <div class="icon-details">
                 <div class="icon-name">@entry.Icon.Name</div>
-                <div class="icon-library">@entry.Library</div>
+                <div class="icon-library">@entry.library</div>
             </div>
         </div>
     </Virtualize>
 </div>
 
 @code {
-    private static readonly IconLibraryDefinition[] Libraries =
-    [
-        new("Bootstrap", BootStrapIcons.IconNames, BootStrapIcons.FromName),
-        new("Lucide", LucideIcons.IconNames, LucideIcons.FromName),
-        new("Tailwindlabs Heroicons", TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName),
-        new("Glincker The SVG", GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName)
-    ];
 
-    private List<IconEntry> allIcons = [];
-    private IconEntry[] filteredIcons = [];
+    private IconLibraryDefinition[] Libraries = [];
+    
+
+    private List<IconFrom> allIcons = [];
+    private IconFrom[] filteredIcons = [];
     private IReadOnlyList<(string Library, int Count)> libraryCounts = Array.Empty<(string Library, int Count)>();
     private IReadOnlyList<string> fuzzyMatches = Array.Empty<string>();
     private string searchText = string.Empty;
     private bool usingFuzzyMatches;
 
-    private ICollection<IconEntry> FilteredIcons => filteredIcons;
+    private ICollection<IconFrom> FilteredIcons => filteredIcons;
 
     private bool hasSearchText => !string.IsNullOrWhiteSpace(searchText);
 
@@ -87,27 +83,35 @@ else if (hasSearchText && FilteredIcons.Count == 0)
 
     protected override void OnInitialized()
     {
+        var x = BootStrapIcons.Activity;
+        Libraries = [
+        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName),
+        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName),
+        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName),
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName)
+    ];
         allIcons =
         [
             .. Libraries
-                .SelectMany(EnumerateIcons)
-                .OrderBy(entry => entry.Icon.Name, StringComparer.OrdinalIgnoreCase)
-                .ThenBy(entry => entry.Library, StringComparer.OrdinalIgnoreCase)
+    .SelectMany(EnumerateIcons)
+    .OrderBy(entry => entry.Icon.Name, StringComparer.OrdinalIgnoreCase)
+    .ThenBy(entry => entry.library, StringComparer.OrdinalIgnoreCase)
         ];
 
         libraryCounts =
         [
-            .. allIcons
-                .GroupBy(entry => entry.Library)
-                .Select(group => (Library: group.Key, Count: group.Count()))
-                .OrderBy(group => group.Library, StringComparer.OrdinalIgnoreCase)
-        ];
+       (LucideIcons.NameLibrary,LucideIcons.IconNames.Length  ),
+       (BootStrapIcons.NameLibrary,BootStrapIcons.IconNames.Length),
+       (TailwindlabsHeroicons.NameLibrary,TailwindlabsHeroicons.IconNames.Length),
+       (GlinckerTheSvgIcons.NameLibrary,GlinckerTheSvgIcons.IconNames.Length)        
+       ];
 
         RefreshResults();
     }
 
-    private static IEnumerable<IconEntry> EnumerateIcons(IconLibraryDefinition library)
+    private static IEnumerable<IconFrom> EnumerateIcons(IconLibraryDefinition library)
     {
+        string nameLibrary = library.Name;
         foreach (var iconName in library.IconNames)
         {
             var icon = library.FromName(iconName);
@@ -116,11 +120,8 @@ else if (hasSearchText && FilteredIcons.Count == 0)
                 continue;
             }
 
-            yield return new IconEntry(
-                library.Name,
-                icon,
-                new HashSet<string> { Normalize($"{library.Name} {icon.Name}") },
-                Normalize(icon.Name));
+            yield return new IconFrom(nameLibrary, icon!);
+
         }
     }
 
@@ -144,28 +145,27 @@ else if (hasSearchText && FilteredIcons.Count == 0)
             return;
         }
 
-        var directMatches = allIcons
-            .Where(entry => entry.Contains(normalizedTerm))
+        var directMatches = 
+            AllIconNames.MaybeIs(normalizedTerm)
             .ToArray();
 
         if (directMatches.Length > 0)
         {
-            filteredIcons = directMatches;
+            filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).ToArray();
             return;
         }
 
         fuzzyMatches = FindClosestNames(normalizedTerm);
         if (fuzzyMatches.Count == 0)
         {
-            filteredIcons = Array.Empty<IconEntry>();
+            filteredIcons = Array.Empty<IconFrom>();
             return;
         }
 
-        usingFuzzyMatches = true;
 
-        var fuzzyLookup = new HashSet<string>(fuzzyMatches.Select(Normalize), StringComparer.Ordinal);
+        var fuzzyLookup = new HashSet<string>(fuzzyMatches, StringComparer.Ordinal);
         filteredIcons = allIcons
-            .Where(entry => fuzzyLookup.Contains(entry.NormalizedName))
+            .Where(entry => fuzzyLookup.Contains(entry.Icon.Name))
             .ToArray();
     }
 
@@ -173,14 +173,9 @@ else if (hasSearchText && FilteredIcons.Count == 0)
     {
         return
         [
-            .. allIcons
-                .Select(entry => entry.Icon.Name)
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .Select(name => new RankedName(name, LevenshteinDistance(normalizedTerm, Normalize(name))))
-                .OrderBy(result => result.Distance)
-                .ThenBy(result => result.Name, StringComparer.OrdinalIgnoreCase)
+            ..AllIconNames.MaybeIs(normalizedTerm)
                 .Take(12)
-                .Select(result => result.Name)
+                .Select(result => result.name)
         ];
     }
 
@@ -202,50 +197,6 @@ else if (hasSearchText && FilteredIcons.Count == 0)
         }
 
         return builder.ToString();
-    }
-
-    private static int LevenshteinDistance(string source, string target)
-    {
-        if (source == target)
-        {
-            return 0;
-        }
-
-        if (source.Length == 0)
-        {
-            return target.Length;
-        }
-
-        if (target.Length == 0)
-        {
-            return source.Length;
-        }
-
-        var previous = new int[target.Length + 1];
-        var current = new int[target.Length + 1];
-
-        for (var index = 0; index <= target.Length; index++)
-        {
-            previous[index] = index;
-        }
-
-        for (var sourceIndex = 1; sourceIndex <= source.Length; sourceIndex++)
-        {
-            current[0] = sourceIndex;
-
-            for (var targetIndex = 1; targetIndex <= target.Length; targetIndex++)
-            {
-                var cost = source[sourceIndex - 1] == target[targetIndex - 1] ? 0 : 1;
-
-                current[targetIndex] = Math.Min(
-                    Math.Min(current[targetIndex - 1] + 1, previous[targetIndex] + 1),
-                    previous[targetIndex - 1] + cost);
-            }
-
-            (previous, current) = (current, previous);
-        }
-
-        return previous[target.Length];
     }
 
     private sealed record IconLibraryDefinition(

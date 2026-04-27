@@ -1,6 +1,9 @@
-﻿using System.Text;
+﻿using SvgIconGenerator;
+using System.Text;
 
 namespace MSvg.All;
+
+public record IconFrom(string library, IconDto Icon);
 public static class MyExtensions
 {
     extension(string value)
