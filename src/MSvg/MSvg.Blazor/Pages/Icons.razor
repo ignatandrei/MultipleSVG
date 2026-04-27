@@ -24,14 +24,7 @@
     }
 </div>
 
-@if (usingFuzzyMatches)
-{
-    <p class="search-hint">
-        No direct matches for <strong>@searchText.Trim()</strong>. Showing the closest names by Levenshtein distance:
-        @string.Join(", ", fuzzyMatches)
-    </p>
-}
-else if (hasSearchText && FilteredIcons.Count == 0)
+@if (hasSearchText && FilteredIcons.Count == 0)
 {
     <p class="search-hint">No icons matched <strong>@searchText.Trim()</strong>.</p>
 }
@@ -58,9 +51,7 @@ else if (hasSearchText && FilteredIcons.Count == 0)
     private List<IconFrom> allIcons = [];
     private IconFrom[] filteredIcons = [];
     private IReadOnlyList<(string Library, int Count)> libraryCounts = Array.Empty<(string Library, int Count)>();
-    private IReadOnlyList<string> fuzzyMatches = Array.Empty<string>();
     private string searchText = string.Empty;
-    private bool usingFuzzyMatches;
 
     private ICollection<IconFrom> FilteredIcons => filteredIcons;
 
@@ -129,8 +120,6 @@ else if (hasSearchText && FilteredIcons.Count == 0)
     {
         var term = searchText.Trim();
 
-        fuzzyMatches = Array.Empty<string>();
-        usingFuzzyMatches = false;
 
         if (string.IsNullOrWhiteSpace(term))
         {
@@ -144,29 +133,17 @@ else if (hasSearchText && FilteredIcons.Count == 0)
             filteredIcons = [.. allIcons];
             return;
         }
-
+        filteredIcons = Array.Empty<IconFrom>();
         var directMatches = 
             AllIconNames.MaybeIs(normalizedTerm)
             .ToArray();
 
         if (directMatches.Length > 0)
         {
-            filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).ToArray();
+            filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).Distinct().ToArray();
             return;
         }
 
-        fuzzyMatches = FindClosestNames(normalizedTerm);
-        if (fuzzyMatches.Count == 0)
-        {
-            filteredIcons = Array.Empty<IconFrom>();
-            return;
-        }
-
-
-        var fuzzyLookup = new HashSet<string>(fuzzyMatches, StringComparer.Ordinal);
-        filteredIcons = allIcons
-            .Where(entry => fuzzyLookup.Contains(entry.Icon.Name))
-            .ToArray();
     }
 
     private IReadOnlyList<string> FindClosestNames(string normalizedTerm)
