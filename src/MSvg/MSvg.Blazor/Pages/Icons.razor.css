@@ -1,0 +1,88 @@
+.page-summary {
+    color: #475569;
+    margin-bottom: 1rem;
+}
+
+.search-panel {
+    margin-bottom: 1rem;
+}
+
+.search-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.search-box {
+    max-width: 32rem;
+}
+
+.library-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.library-chip {
+    background-color: #eef2ff;
+    border-radius: 9999px;
+    color: #3730a3;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.75rem;
+}
+
+.search-hint {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    color: #334155;
+    margin-bottom: 1rem;
+    padding: 0.85rem 1rem;
+}
+
+.icon-results {
+    min-height: 30rem;
+}
+
+.icon-card {
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.9rem;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 0.85rem 1rem;
+}
+
+.icon-preview {
+    align-items: center;
+    background-color: #f8fafc;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    height: 4rem;
+    justify-content: center;
+    width: 4rem;
+}
+
+.icon-svg {
+    color: #4f46e5;
+    display: block;
+}
+
+.icon-details {
+    min-width: 0;
+}
+
+.icon-name {
+    color: #0f172a;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.icon-library {
+    color: #475569;
+    font-size: 0.92rem;
+    margin-top: 0.2rem;
+}

@@ -1,0 +1,91 @@
+@namespace MSvg.Blazor.Components
+@using System.Text
+@using System.Text.Encodings.Web
+@using SvgIconGenerator
+
+@((MarkupString)BuildSvgMarkup())
+
+@code {
+    [Parameter, EditorRequired]
+    public IconDto Icon { get; set; } = default!;
+
+    [Parameter]
+    public int Size { get; set; } = 32;
+
+    [Parameter]
+    public string CssClass { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    private string BuildSvgMarkup()
+    {
+        var builder = new StringBuilder();
+        builder.Append("<svg xmlns=\"http://www.w3.org/2000/svg\"");
+
+        string? sourceClass = null;
+
+        foreach (var attribute in Icon.DefaultAttributes)
+        {
+            if (string.Equals(attribute.Key, "width", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(attribute.Key, "height", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            if (string.Equals(attribute.Key, "class", StringComparison.OrdinalIgnoreCase))
+            {
+                sourceClass = attribute.Value;
+                continue;
+            }
+
+            builder.Append(' ')
+                .Append(attribute.Key)
+                .Append("=\"")
+                .Append(HtmlEncoder.Default.Encode(attribute.Value))
+                .Append('"');
+        }
+
+        var combinedClass = string.Join(
+            " ",
+            new[] { sourceClass, CssClass }.Where(value => !string.IsNullOrWhiteSpace(value)));
+
+        if (!string.IsNullOrWhiteSpace(combinedClass))
+        {
+            builder.Append(" class=\"")
+                .Append(HtmlEncoder.Default.Encode(combinedClass))
+                .Append('"');
+        }
+
+        builder.Append(" width=\"")
+            .Append(Size)
+            .Append("\" height=\"")
+            .Append(Size)
+            .Append("\" focusable=\"false\"");
+
+        if (string.IsNullOrWhiteSpace(Title))
+        {
+            builder.Append(" aria-hidden=\"true\"");
+        }
+        else
+        {
+            builder.Append(" role=\"img\" aria-label=\"")
+                .Append(HtmlEncoder.Default.Encode(Title))
+                .Append('"');
+        }
+
+        builder.Append('>');
+
+        if (!string.IsNullOrWhiteSpace(Title))
+        {
+            builder.Append("<title>")
+                .Append(HtmlEncoder.Default.Encode(Title))
+                .Append("</title>");
+        }
+
+        builder.Append(Icon.InnerContent);
+        builder.Append("</svg>");
+
+        return builder.ToString();
+    }
+}

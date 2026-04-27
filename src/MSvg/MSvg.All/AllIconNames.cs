@@ -1,27 +1,35 @@
 ﻿
+using SvgIconGenerator;
+
 namespace MSvg.All;
 
 public static class AllIconNames
 {
     public static HashSet<string> IconNames { get; set; }
-    private static Func<string, SvgIconGenerator.IconDto?>[] IconGenerator;
+    private static Func<string, IconFrom?>[] IconGenerator;
     static AllIconNames()
     {
         IconNames = [
             .. LucideIcons.IconNames, 
             .. BootStrapIcons.IconNames, 
             .. TailwindlabsHeroicons.IconNames,
-            .. GlinckerTheSvg.IconNames
+            .. GlinckerTheSvgIcons.IconNames
             ];
         IconGenerator =
         [
-            LucideIcons.FromName,
-            BootStrapIcons.FromName,
-            TailwindlabsHeroicons.FromName,
-            GlinckerTheSvg.FromName
+            x=>FromNameLibrary(LucideIcons.NameLibrary, x, LucideIcons.FromName),
+            x=>FromNameLibrary(BootStrapIcons.NameLibrary, x, BootStrapIcons.FromName),
+            x=>FromNameLibrary(TailwindlabsHeroicons.NameLibrary, x, TailwindlabsHeroicons.FromName),
+            x=>FromNameLibrary(GlinckerTheSvgIcons.NameLibrary, x, GlinckerTheSvgIcons.FromName)
         ];
     }
-    public static IEnumerable<SvgIconGenerator.IconDto> FromName(string name)
+    private static IconFrom? FromNameLibrary(string nameLibrary ,string name, Func<string, IconDto?> generator)
+    {
+        var icon = generator(name);
+        if(icon == null) return null;
+        return new IconFrom(nameLibrary, icon);
+    }
+    public static IEnumerable<IconFrom> FromName(string name)
     {
         foreach (var f in IconGenerator)
         {
@@ -30,31 +38,23 @@ public static class AllIconNames
         }
 
     }
-    public static string[] MaybeIs(string name)
+    public static IEnumerable<(string nameLibrary,string name)> MaybeIs(string name)
     {
-        if (IconNames.Count == 0)
+        foreach(var item in LucideIcons.MaybeIs(name))
         {
-            return Array.Empty<string>();
+            yield return (LucideIcons.NameLibrary, item);
         }
-        var min = int.MaxValue;
-        var matches = new List<string>();
-
-        foreach (var iconName in IconNames)
+        foreach (var item in BootStrapIcons.MaybeIs(name))
         {
-            var distance = Fastenshtein.Levenshtein.Distance(name, iconName);
-
-            if (distance < min)
-            {
-                min = distance;
-                matches.Clear();
-                matches.Add(iconName);
-            }
-            else if (distance == min)
-            {
-                matches.Add(iconName);
-            }
+            yield return (BootStrapIcons.NameLibrary,item);
         }
-
-        return matches.ToArray();
+        foreach (var item in TailwindlabsHeroicons.MaybeIs(name))
+        {
+            yield return (TailwindlabsHeroicons.NameLibrary,item);
+        }
+        foreach (var item in GlinckerTheSvgIcons.MaybeIs(name))
+        {
+            yield return (GlinckerTheSvgIcons.NameLibrary,item);
+        }
     }
 }

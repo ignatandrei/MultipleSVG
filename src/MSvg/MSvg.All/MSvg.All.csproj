@@ -39,10 +39,7 @@
 		<Watch Include="**\*.txt" />
 	</ItemGroup>
 	<ItemGroup>
-		<AdditionalFiles Include="Templating/BootStrap.txt" />
-		<AdditionalFiles Include="Templating/Lucide.txt" />
-		<AdditionalFiles Include="Templating/TailwindlabsHeroicons.txt" />
-		<AdditionalFiles Include="Templating/glinckerthesvg.txt" />
+		<AdditionalFiles Include="Templating/IconLookupShared.txt" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md" Pack="true" PackagePath="\" Link="README.md" />

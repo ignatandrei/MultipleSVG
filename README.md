@@ -17,6 +17,13 @@ dotnet add package MSvg.All
 
 The current package targets **.NET 10**.
 
+## Blazor package
+
+`MSvg.Blazor` is a separate Razor Class Library package that builds on `MSvg.All` and provides:
+
+- `SvgIconPreview` for rendering `IconDto` values
+- a packaged `/icons` browser page that can be added to a Blazor app through `Router.AdditionalAssemblies`
+
 ## Use a generated icon directly
 
 Each icon set is exposed through a static class:

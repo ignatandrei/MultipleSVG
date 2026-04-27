@@ -1,0 +1,209 @@
+@page "/icons"
+@namespace MSvg.Blazor.Pages
+@using System.Text
+
+<PageTitle>Icon browser</PageTitle>
+
+<h1>Icon browser</h1>
+
+<p class="page-summary">@FilteredIcons.Count of @allIcons.Count icons across @Libraries.Length libraries.</p>
+
+<div class="search-panel">
+    <label class="search-label" for="icon-search">Search by icon name or library</label>
+    <input id="icon-search"
+           class="form-control search-box"
+           @bind="SearchText"
+           @bind:event="oninput"
+           placeholder="Try camera, arrow-right, heroicons, or a misspelling..." />
+</div>
+
+<div class="library-summary">
+    @foreach (var summary in libraryCounts)
+    {
+        <span class="library-chip">@summary.Library: @summary.Count</span>
+    }
+</div>
+
+@if (usingFuzzyMatches)
+{
+    <p class="search-hint">
+        No direct matches for <strong>@searchText.Trim()</strong>. Showing the closest names by Levenshtein distance:
+        @string.Join(", ", fuzzyMatches)
+    </p>
+}
+else if (hasSearchText && FilteredIcons.Count == 0)
+{
+    <p class="search-hint">No icons matched <strong>@searchText.Trim()</strong>.</p>
+}
+
+<div class="icon-results">
+    <Virtualize Items="@FilteredIcons" Context="entry" ItemSize="92">
+        <div class="icon-card">
+            <div class="icon-preview">
+                <SvgIconPreview Icon="@entry.Icon" Size="40" CssClass="icon-svg" Title="@entry.Icon.Name" />
+            </div>
+            <div class="icon-details">
+                <div class="icon-name">@entry.Icon.Name</div>
+                <div class="icon-library">@entry.library</div>
+            </div>
+        </div>
+    </Virtualize>
+</div>
+
+@code {
+
+    private IconLibraryDefinition[] Libraries = [];
+    
+
+    private List<IconFrom> allIcons = [];
+    private IconFrom[] filteredIcons = [];
+    private IReadOnlyList<(string Library, int Count)> libraryCounts = Array.Empty<(string Library, int Count)>();
+    private IReadOnlyList<string> fuzzyMatches = Array.Empty<string>();
+    private string searchText = string.Empty;
+    private bool usingFuzzyMatches;
+
+    private ICollection<IconFrom> FilteredIcons => filteredIcons;
+
+    private bool hasSearchText => !string.IsNullOrWhiteSpace(searchText);
+
+    private string SearchText
+    {
+        get => searchText;
+        set
+        {
+            if (searchText == value)
+            {
+                return;
+            }
+
+            searchText = value;
+            RefreshResults();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        var x = BootStrapIcons.Activity;
+        Libraries = [
+        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName),
+        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName),
+        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName),
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName)
+    ];
+        allIcons =
+        [
+            .. Libraries
+    .SelectMany(EnumerateIcons)
+    .OrderBy(entry => entry.Icon.Name, StringComparer.OrdinalIgnoreCase)
+    .ThenBy(entry => entry.library, StringComparer.OrdinalIgnoreCase)
+        ];
+
+        libraryCounts =
+        [
+       (LucideIcons.NameLibrary,LucideIcons.IconNames.Length  ),
+       (BootStrapIcons.NameLibrary,BootStrapIcons.IconNames.Length),
+       (TailwindlabsHeroicons.NameLibrary,TailwindlabsHeroicons.IconNames.Length),
+       (GlinckerTheSvgIcons.NameLibrary,GlinckerTheSvgIcons.IconNames.Length)        
+       ];
+
+        RefreshResults();
+    }
+
+    private static IEnumerable<IconFrom> EnumerateIcons(IconLibraryDefinition library)
+    {
+        string nameLibrary = library.Name;
+        foreach (var iconName in library.IconNames)
+        {
+            var icon = library.FromName(iconName);
+            if (icon is null)
+            {
+                continue;
+            }
+
+            yield return new IconFrom(nameLibrary, icon!);
+
+        }
+    }
+
+    private void RefreshResults()
+    {
+        var term = searchText.Trim();
+
+        fuzzyMatches = Array.Empty<string>();
+        usingFuzzyMatches = false;
+
+        if (string.IsNullOrWhiteSpace(term))
+        {
+            filteredIcons = [.. allIcons];
+            return;
+        }
+
+        var normalizedTerm = Normalize(term);
+        if (normalizedTerm.Length == 0)
+        {
+            filteredIcons = [.. allIcons];
+            return;
+        }
+
+        var directMatches = 
+            AllIconNames.MaybeIs(normalizedTerm)
+            .ToArray();
+
+        if (directMatches.Length > 0)
+        {
+            filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).ToArray();
+            return;
+        }
+
+        fuzzyMatches = FindClosestNames(normalizedTerm);
+        if (fuzzyMatches.Count == 0)
+        {
+            filteredIcons = Array.Empty<IconFrom>();
+            return;
+        }
+
+
+        var fuzzyLookup = new HashSet<string>(fuzzyMatches, StringComparer.Ordinal);
+        filteredIcons = allIcons
+            .Where(entry => fuzzyLookup.Contains(entry.Icon.Name))
+            .ToArray();
+    }
+
+    private IReadOnlyList<string> FindClosestNames(string normalizedTerm)
+    {
+        return
+        [
+            ..AllIconNames.MaybeIs(normalizedTerm)
+                .Take(12)
+                .Select(result => result.name)
+        ];
+    }
+
+    private static string Normalize(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return string.Empty;
+        }
+
+        var builder = new StringBuilder(value.Length);
+
+        foreach (var character in value)
+        {
+            if (char.IsLetterOrDigit(character))
+            {
+                builder.Append(char.ToLowerInvariant(character));
+            }
+        }
+
+        return builder.ToString();
+    }
+
+    private sealed record IconLibraryDefinition(
+        string Name,
+        IReadOnlyList<string> IconNames,
+        Func<string, IconDto?> FromName);
+
+
+    private sealed record RankedName(string Name, int Distance);
+}

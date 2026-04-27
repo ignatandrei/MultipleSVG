@@ -7,10 +7,11 @@ public sealed class TestNumberIcons
     [TestMethod]
     public void NumberIcons()
     {
+        Assert.IsNotNull(BootStrapIcons.Activity);
         Assert.HasCount(1695, LucideIcons.IconNames);
         Assert.HasCount(2037, BootStrapIcons.IconNames);
         Assert.HasCount(316, TailwindlabsHeroicons.IconNames);
-        Assert.HasCount(1170, GlinckerTheSvg.IconNames);
+        Assert.HasCount(1170, GlinckerTheSvgIcons.IconNames);
 
     }
 }
