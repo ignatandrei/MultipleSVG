@@ -60,15 +60,15 @@ namespace {{data.nameSpace}} {
 
 		private static global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?> CreateIconsByName()
 		{
-		System.Diagnostics.Debugger.Break();
-		global::SvgIconGenerator.IconDto? x;
+		//System.Diagnostics.Debugger.Break();
+		//global::SvgIconGenerator.IconDto? x;
 			var icons = new global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?>(
 				global::System.StringComparer.OrdinalIgnoreCase);
 		{{ for file in filterForFolder }}
 		// {{ 
 		result = file.namePascal
 		}}
-		x= {{data.className}}.{{result}};
+		//x= {{data.className}}.{{result}};
 			icons["{{result}}"] = {{result}};
 			icons["{{file.nameNoExt}}"] = {{result}};
 		{{ end }}
