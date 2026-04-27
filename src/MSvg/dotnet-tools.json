@@ -7,14 +7,14 @@
       "commands": [
         "r"
       ],
-      "rollForward": false
+      "rollForward": true
     },
     "rimraf": {
       "version": "0.3.1",
       "commands": [
         "rimraf"
       ],
-      "rollForward": false
+      "rollForward": true
     }
   }
 }

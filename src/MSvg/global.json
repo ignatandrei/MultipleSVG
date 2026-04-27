@@ -7,6 +7,9 @@
     "build": "dotnet build --no-restore --configuration Release",
     "test": "dotnet test --no-build --configuration Release",
     "ci": "dotnet r restore && dotnet r build && dotnet r test",
-    "pack": "dotnet pack MSvg.All/MSvg.All.csproj --configuration Release --no-build --no-restore --output ./artifacts"
+    "pack": "dotnet r packAll && dotnet r packBlazor",
+    "packAll":"dotnet pack MSvg.All/MSvg.All.csproj --configuration Release --no-build --no-restore --output ./artifacts",
+    "packBlazor":"dotnet pack MSvg.Blazor/MSvg.Blazor.csproj --configuration Release --no-build --no-restore --output ./artifacts"
+
   }
 }
