@@ -30,15 +30,20 @@
 }
 
 <div class="icon-results">
-    <Virtualize Items="@FilteredIcons" Context="entry" ItemSize="92">
-        <div class="icon-card">
-            <div class="icon-preview">
-                <SvgIconPreview Icon="@entry.Icon" Size="40" CssClass="icon-svg" Title="@entry.Icon.Name" />
-            </div>
-            <div class="icon-details">
-                <div class="icon-name">@entry.Icon.Name</div>
-                <div class="icon-library">@entry.library</div>
-            </div>
+    <Virtualize Items="@FilteredIconRows" Context="entries" ItemSize="104">
+        <div class="icon-row">
+            @foreach (var entry in entries)
+            {
+                <div class="icon-card">
+                    <div class="icon-preview">
+                        <SvgIconPreview Icon="@entry.Icon" Size="40" CssClass="icon-svg" Title="@entry.Icon.Name" />
+                    </div>
+                    <div class="icon-details">
+                        <div class="icon-name">@entry.Icon.Name</div>
+                        <div class="icon-library">@entry.library</div>
+                    </div>
+                </div>
+            }
         </div>
     </Virtualize>
 </div>
@@ -50,10 +55,12 @@
 
     private List<IconFrom> allIcons = [];
     private IconFrom[] filteredIcons = [];
+    private IconFrom[][] filteredIconRows = [];
     private IReadOnlyList<(string Library, int Count)> libraryCounts = Array.Empty<(string Library, int Count)>();
     private string searchText = string.Empty;
 
     private ICollection<IconFrom> FilteredIcons => filteredIcons;
+    private ICollection<IconFrom[]> FilteredIconRows => filteredIconRows;
 
     private bool hasSearchText => !string.IsNullOrWhiteSpace(searchText);
 
@@ -124,6 +131,7 @@
         if (string.IsNullOrWhiteSpace(term))
         {
             filteredIcons = [.. allIcons];
+            filteredIconRows = [.. filteredIcons.Chunk(2)];
             return;
         }
 
@@ -131,9 +139,11 @@
         if (normalizedTerm.Length == 0)
         {
             filteredIcons = [.. allIcons];
+            filteredIconRows = [.. filteredIcons.Chunk(2)];
             return;
         }
         filteredIcons = Array.Empty<IconFrom>();
+        filteredIconRows = [];
         var directMatches = 
             AllIconNames.MaybeIs(normalizedTerm)
             .ToArray();
@@ -141,6 +151,7 @@
         if (directMatches.Length > 0)
         {
             filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).Distinct().ToArray();
+            filteredIconRows = [.. filteredIcons.Chunk(2)];
             return;
         }
 
