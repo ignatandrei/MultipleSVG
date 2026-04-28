@@ -50,9 +50,8 @@
 
 @code {
 
-    private IconLibraryDefinition[] Libraries = [];
-    
 
+    IconLibraryDefinition[] Libraries = IconLibraryDefinition.Libraries;
     private List<IconFrom> allIcons = [];
     private IconFrom[] filteredIcons = [];
     private IconFrom[][] filteredIconRows = [];
@@ -82,12 +81,6 @@
     protected override void OnInitialized()
     {
         //var x = BootStrapIcons.Activity;
-        Libraries = [
-        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName),
-        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName),
-        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName),
-        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName)
-    ];
         allIcons =
         [
             .. Libraries
@@ -187,11 +180,7 @@
         return builder.ToString();
     }
 
-    private sealed record IconLibraryDefinition(
-        string Name,
-        IReadOnlyList<string> IconNames,
-        Func<string, IconDto?> FromName);
-
+    
 
     private sealed record RankedName(string Name, int Distance);
 }
