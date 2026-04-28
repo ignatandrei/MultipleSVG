@@ -3,6 +3,21 @@ using SvgIconGenerator;
 
 namespace MSvg.All;
 
+public sealed record IconLibraryDefinition(
+        string Name,
+        IReadOnlyList<string> IconNames,
+        Func<string, IconDto?> FromName,
+        Func<string ,IEnumerable<string>> MaybeIs
+        )
+{
+    public static readonly IconLibraryDefinition[] Libraries = [
+        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs),
+        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs),
+        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs),
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs)
+    ];
+}
+
 public static class AllIconNames
 {
     public static HashSet<string> IconNames { get; set; }
