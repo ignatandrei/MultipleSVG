@@ -34,6 +34,7 @@
 		<AdditionalFiles Include="Icons/glinckerthesvg/*.svg" />
 		<AdditionalFiles Include="Icons/Azure_Public_Service_Icons/*.svg" />
 		<AdditionalFiles Include="Icons/Dynamics_365_App_Icons/*.svg" />
+		<AdditionalFiles Include="Icons/Microsoft_365_content_icons/*.svg" />
 
 
 	</ItemGroup>

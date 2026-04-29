@@ -19,6 +19,9 @@ func folderNameForClass(className)
 	if className == "Dynamics_365_App_Icons"
 		ret "Dynamics_365_App_Icons"
 	end
+	if className == "Microsoft_365_content_icons"
+		ret "Microsoft_365_content_icons"
+	end
 
 	ret ""
 end
