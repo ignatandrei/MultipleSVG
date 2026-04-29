@@ -16,6 +16,10 @@ func folderNameForClass(className)
 	if className == "Azure_Public_Service_Icons"
 		ret "Azure_Public_Service_Icons"
 	end
+	if className == "Dynamics_365_App_Icons"
+		ret "Dynamics_365_App_Icons"
+	end
+
 	ret ""
 end
 
