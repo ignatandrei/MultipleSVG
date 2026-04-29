@@ -13,6 +13,9 @@ func folderNameForClass(className)
 	if className == "GlinckerTheSvgIcons"
 		ret "glinckerthesvg"
 	end
+	if className == "Azure_Public_Service_Icons"
+		ret "Azure_Public_Service_Icons"
+	end
 	ret ""
 end
 

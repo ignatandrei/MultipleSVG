@@ -14,7 +14,8 @@ public sealed record IconLibraryDefinition(
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs),
         new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs),
         new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs),
-        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs)
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs),
+        new(Azure_Public_Service_Icons.NameLibrary,Azure_Public_Service_Icons.IconNames,Azure_Public_Service_Icons.FromName,Azure_Public_Service_Icons.MaybeIs)
     ];
 }
 
@@ -28,14 +29,16 @@ public static class AllIconNames
             .. LucideIcons.IconNames, 
             .. BootStrapIcons.IconNames, 
             .. TailwindlabsHeroicons.IconNames,
-            .. GlinckerTheSvgIcons.IconNames
+            .. GlinckerTheSvgIcons.IconNames,
+            .. Azure_Public_Service_Icons.IconNames 
             ];
         IconGenerator =
         [
             x=>FromNameLibrary(LucideIcons.NameLibrary, x, LucideIcons.FromName),
             x=>FromNameLibrary(BootStrapIcons.NameLibrary, x, BootStrapIcons.FromName),
             x=>FromNameLibrary(TailwindlabsHeroicons.NameLibrary, x, TailwindlabsHeroicons.FromName),
-            x=>FromNameLibrary(GlinckerTheSvgIcons.NameLibrary, x, GlinckerTheSvgIcons.FromName)
+            x=>FromNameLibrary(GlinckerTheSvgIcons.NameLibrary, x, GlinckerTheSvgIcons.FromName),
+            x=> FromNameLibrary(Azure_Public_Service_Icons.NameLibrary,x,Azure_Public_Service_Icons.FromName)
         ];
     }
     private static IconFrom? FromNameLibrary(string nameLibrary ,string name, Func<string, IconDto?> generator)
