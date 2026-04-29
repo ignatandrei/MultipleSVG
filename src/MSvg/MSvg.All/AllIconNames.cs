@@ -14,7 +14,8 @@ public sealed record IconLibraryDefinition(
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs),
         new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs),
         new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs),
-        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs)
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs),
+        new(Azure_Public_Service_Icons.NameLibrary,Azure_Public_Service_Icons.IconNames,Azure_Public_Service_Icons.FromName,Azure_Public_Service_Icons.MaybeIs)
     ];
 }
 
@@ -24,19 +25,11 @@ public static class AllIconNames
     private static Func<string, IconFrom?>[] IconGenerator;
     static AllIconNames()
     {
-        IconNames = [
-            .. LucideIcons.IconNames, 
-            .. BootStrapIcons.IconNames, 
-            .. TailwindlabsHeroicons.IconNames,
-            .. GlinckerTheSvgIcons.IconNames
-            ];
+        IconNames = IconLibraryDefinition.Libraries.SelectMany(l => l.IconNames).ToHashSet();
         IconGenerator =
-        [
-            x=>FromNameLibrary(LucideIcons.NameLibrary, x, LucideIcons.FromName),
-            x=>FromNameLibrary(BootStrapIcons.NameLibrary, x, BootStrapIcons.FromName),
-            x=>FromNameLibrary(TailwindlabsHeroicons.NameLibrary, x, TailwindlabsHeroicons.FromName),
-            x=>FromNameLibrary(GlinckerTheSvgIcons.NameLibrary, x, GlinckerTheSvgIcons.FromName)
-        ];
+            IconLibraryDefinition.Libraries
+            .Select(l => new Func<string, IconFrom?>(x => FromNameLibrary(l.Name, x, l.FromName)))
+            .ToArray();
     }
     private static IconFrom? FromNameLibrary(string nameLibrary ,string name, Func<string, IconDto?> generator)
     {
@@ -55,21 +48,13 @@ public static class AllIconNames
     }
     public static IEnumerable<(string nameLibrary,string name)> MaybeIs(string name)
     {
-        foreach(var item in LucideIcons.MaybeIs(name))
+        foreach(var f in IconLibraryDefinition.Libraries)
         {
-            yield return (LucideIcons.NameLibrary, item);
+            foreach(var item in f.MaybeIs(name))
+            {
+                yield return (f.Name, item);
+            }
         }
-        foreach (var item in BootStrapIcons.MaybeIs(name))
-        {
-            yield return (BootStrapIcons.NameLibrary,item);
-        }
-        foreach (var item in TailwindlabsHeroicons.MaybeIs(name))
-        {
-            yield return (TailwindlabsHeroicons.NameLibrary,item);
-        }
-        foreach (var item in GlinckerTheSvgIcons.MaybeIs(name))
-        {
-            yield return (GlinckerTheSvgIcons.NameLibrary,item);
-        }
+        
     }
 }

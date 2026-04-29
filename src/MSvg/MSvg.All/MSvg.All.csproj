@@ -32,6 +32,7 @@
 		<AdditionalFiles Include="Icons/Bootstrap/*.svg" />
 		<AdditionalFiles Include="Icons/TailwindlabsHeroicons/*.svg" />
 		<AdditionalFiles Include="Icons/glinckerthesvg/*.svg" />
+		<AdditionalFiles Include="Icons/Azure_Public_Service_Icons/*.svg" />
 
 		
 	</ItemGroup>

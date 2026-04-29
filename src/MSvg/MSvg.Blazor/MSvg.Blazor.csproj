@@ -38,7 +38,7 @@
 
   <PropertyGroup>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <WarningsNotAsErrors>NU1900</WarningsNotAsErrors>
+    <WarningsNotAsErrors>NU1900;NU1301</WarningsNotAsErrors>
   </PropertyGroup>
 
 </Project>

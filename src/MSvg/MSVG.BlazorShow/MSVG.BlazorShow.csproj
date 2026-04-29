@@ -15,5 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MSvg.Blazor\MSvg.Blazor.csproj" />
   </ItemGroup>
+	<PropertyGroup>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningsNotAsErrors>NU1900;NU1301</WarningsNotAsErrors>
+	</PropertyGroup>
+
 
 </Project>
