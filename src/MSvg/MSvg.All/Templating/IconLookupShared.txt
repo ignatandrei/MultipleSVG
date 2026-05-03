@@ -25,7 +25,9 @@ func folderNameForClass(className)
 	if className == "IconNoir"
 		ret "IconNoir"
 	end
-
+	if className == "Leungwensen"
+		ret "Leungwensen"
+	end
 	ret ""
 end
 

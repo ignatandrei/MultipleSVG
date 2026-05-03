@@ -36,8 +36,7 @@
 		<AdditionalFiles Include="Icons/Dynamics_365_App_Icons/*.svg" />
 		<AdditionalFiles Include="Icons/Microsoft_365_content_icons/*.svg" />
 		<AdditionalFiles Include="Icons/IconNoir/*.svg" />
-
-
+		<AdditionalFiles Include="Icons/Leungwensen/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
