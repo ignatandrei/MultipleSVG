@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <PackageId>MSvg.Blazor</PackageId>
-    <PackageVersion>2026.430.2302</PackageVersion>
+    <PackageVersion>2026.503.1538</PackageVersion>
     <Authors>Ignat Andrei</Authors>
     <Description>Blazor components and pages for browsing and rendering icons from MSvg.All.</Description>
     <PackageTags>svg;icons;blazor;components;razor</PackageTags>

@@ -133,9 +133,12 @@
         }
         filteredIcons = Array.Empty<IconFrom>();
         filteredIconRows = [];
-        var directMatches = 
+        var directMatches =
             AllIconNames.MaybeIs(normalizedTerm)
-            .ToArray();
+            .ToArray()
+            .OrderBy(it => it.name, StringComparer.InvariantCultureIgnoreCase)
+            .ToArray()
+        ;
 
         if (directMatches.Length > 0)
         {

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <PackageId>MSvg.All</PackageId>
-    <PackageVersion>2026.430.2302</PackageVersion>
+    <PackageVersion>2026.503.1538</PackageVersion>
     <Authors>Ignat Andrei</Authors>
     <Description>Multiple SVG icon library generated from Lucide, Bootstrap, Heroicons, and glinckerthesvg sources.</Description>
     <PackageTags>svg;icons;blazor;components</PackageTags>
