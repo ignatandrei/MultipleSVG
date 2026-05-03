@@ -89,13 +89,9 @@
     .ThenBy(entry => entry.library, StringComparer.OrdinalIgnoreCase)
         ];
 
-        libraryCounts =
-        [
-       (LucideIcons.NameLibrary,LucideIcons.IconNames.Length  ),
-       (BootStrapIcons.NameLibrary,BootStrapIcons.IconNames.Length),
-       (TailwindlabsHeroicons.NameLibrary,TailwindlabsHeroicons.IconNames.Length),
-       (GlinckerTheSvgIcons.NameLibrary,GlinckerTheSvgIcons.IconNames.Length)        
-       ];
+        libraryCounts = IconLibraryDefinition.Libraries
+            .Select(it => (it.Name, it.IconNames.Count))
+            .ToArray();
 
         RefreshResults();
     }
