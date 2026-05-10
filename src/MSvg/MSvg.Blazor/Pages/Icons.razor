@@ -91,6 +91,7 @@
 
         libraryCounts = IconLibraryDefinition.Libraries
             .Select(it => (it.Name, it.IconNames.Count))
+            .OrderBy(it => it.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
         RefreshResults();
@@ -142,7 +143,13 @@
 
         if (directMatches.Length > 0)
         {
-            filteredIcons = directMatches.SelectMany(t => AllIconNames.FromName(t.name)).Distinct().ToArray();
+            filteredIcons = directMatches
+                .SelectMany(t => AllIconNames.FromName(t.name))
+                .Distinct()
+                .OrderByDescending(icon => Normalize(icon.Icon.Name).Contains(normalizedTerm, StringComparison.Ordinal))
+                .ThenBy(icon => icon.Icon.Name, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(icon => icon.library, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
             filteredIconRows = [.. filteredIcons.Chunk(2)];
             return;
         }
