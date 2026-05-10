@@ -19,7 +19,8 @@ public sealed record IconLibraryDefinition(
         new(Dynamics_365_App_Icons.NameLibrary,Dynamics_365_App_Icons.IconNames,Dynamics_365_App_Icons.FromName,Dynamics_365_App_Icons.MaybeIs),
         new(Microsoft_365_content_icons.NameLibrary,Microsoft_365_content_icons.IconNames,Microsoft_365_content_icons.FromName,Microsoft_365_content_icons.MaybeIs),
         new(IconNoir.NameLibrary,IconNoir.IconNames,IconNoir.FromName,IconNoir.MaybeIs),
-        new(Leungwensen.NameLibrary,Leungwensen.IconNames,Leungwensen.FromName,Leungwensen.MaybeIs)
+        new(Leungwensen.NameLibrary,Leungwensen.IconNames,Leungwensen.FromName,Leungwensen.MaybeIs),
+        new (SustyIcons.NameLibrary,SustyIcons.IconNames,SustyIcons.FromName,SustyIcons.MaybeIs),
 
     ];
 }
