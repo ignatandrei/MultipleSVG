@@ -11,3 +11,5 @@ The script also verifies:
 - downloaded license contains `Copyright Notice` and `Permission is hereby granted`
 
 For local/offline validation, optional parameters `TreeFilePath`, `SourceRootPath`, and `LicenseSourcePath` can be used.
+
+For GitHub API rate limits, set `GITHUB_TOKEN` (or pass `-GitHubToken`).

@@ -7,7 +7,8 @@ param(
     [string]$IconsPath = "source-icons",
     [string]$TreeFilePath = "",
     [string]$SourceRootPath = "",
-    [string]$LicenseSourcePath = ""
+    [string]$LicenseSourcePath = "",
+    [string]$GitHubToken = $env:GITHUB_TOKEN
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,6 +17,15 @@ $headers = @{
     "Accept" = "application/vnd.github+json"
     "User-Agent" = "MSvg-Sustyicons-Downloader"
 }
+
+if (-not [string]::IsNullOrWhiteSpace($GitHubToken)) {
+    $headers["Authorization"] = "Bearer $GitHubToken"
+}
+
+$requiredLicenseTerms = @(
+    "Copyright Notice",
+    "Permission is hereby granted"
+)
 
 function Resolve-ScriptPath([string]$PathValue) {
     if ([System.IO.Path]::IsPathRooted($PathValue)) {
@@ -39,7 +49,12 @@ if (-not (Test-Path -LiteralPath $targetLicenseDirectory)) {
 
 if ([string]::IsNullOrWhiteSpace($TreeFilePath)) {
     $treeUrl = "https://api.github.com/repos/$Owner/$Repository/git/trees/$Branch?recursive=1"
-    $treeResponse = Invoke-RestMethod -Uri $treeUrl -Headers $headers
+    try {
+        $treeResponse = Invoke-RestMethod -Uri $treeUrl -Headers $headers
+    }
+    catch {
+        throw "Failed to fetch repository tree from $treeUrl. Check repository/branch values, connectivity, and GitHub token configuration."
+    }
 }
 else {
     $resolvedTreeFilePath = Resolve-ScriptPath $TreeFilePath
@@ -67,7 +82,11 @@ if ($icons.Count -eq 0) {
 }
 
 foreach ($icon in $icons) {
-    $relativePath = $icon.path.Substring($IconsPath.Length + 1)
+    $relativePath = $icon.path -replace ("^{0}/" -f [regex]::Escape($IconsPath)), ""
+    if ($relativePath -eq $icon.path) {
+        throw "Unexpected icon path '$($icon.path)' for IconsPath '$IconsPath'."
+    }
+
     $destinationPath = Join-Path $targetOutputDirectory $relativePath
     $destinationDirectory = Split-Path -Parent $destinationPath
 
@@ -77,20 +96,40 @@ foreach ($icon in $icons) {
 
     if ([string]::IsNullOrWhiteSpace($SourceRootPath)) {
         $rawUrl = "https://raw.githubusercontent.com/$Owner/$Repository/$Branch/$($icon.path)"
-        Invoke-WebRequest -Uri $rawUrl -Headers $headers -OutFile $destinationPath
+        try {
+            Invoke-WebRequest -Uri $rawUrl -Headers $headers -OutFile $destinationPath
+        }
+        catch {
+            throw "Failed to download icon '$($icon.path)' from $rawUrl."
+        }
     }
     else {
         $sourcePath = Join-Path $resolvedSourceRootPath $icon.path
-        Copy-Item -LiteralPath $sourcePath -Destination $destinationPath -Force
+        try {
+            Copy-Item -LiteralPath $sourcePath -Destination $destinationPath -Force
+        }
+        catch {
+            throw "Failed to copy local icon '$sourcePath' to '$destinationPath'."
+        }
     }
 }
 
 if ([string]::IsNullOrWhiteSpace($LicenseSourcePath)) {
     $licenseUrl = "https://raw.githubusercontent.com/$Owner/$Repository/$Branch/LICENSE"
-    Invoke-WebRequest -Uri $licenseUrl -Headers $headers -OutFile $targetLicensePath
+    try {
+        Invoke-WebRequest -Uri $licenseUrl -Headers $headers -OutFile $targetLicensePath
+    }
+    catch {
+        throw "Failed to download license from $licenseUrl."
+    }
 }
 else {
-    Copy-Item -LiteralPath $resolvedLicenseSourcePath -Destination $targetLicensePath -Force
+    try {
+        Copy-Item -LiteralPath $resolvedLicenseSourcePath -Destination $targetLicensePath -Force
+    }
+    catch {
+        throw "Failed to copy local license '$resolvedLicenseSourcePath' to '$targetLicensePath'."
+    }
 }
 
 $downloadedIcons = @(Get-ChildItem -LiteralPath $targetOutputDirectory -Recurse -File -Filter "*.svg")
@@ -99,8 +138,9 @@ if ($downloadedIcons.Count -ne $icons.Count) {
 }
 
 $licenseContent = Get-Content -LiteralPath $targetLicensePath -Raw
-if (-not $licenseContent.Contains("Copyright Notice") -or -not $licenseContent.Contains("Permission is hereby granted")) {
-    throw "Verification failed: downloaded license does not contain expected terms."
+$missingLicenseTerms = @($requiredLicenseTerms | Where-Object { -not $licenseContent.Contains($_) })
+if ($missingLicenseTerms.Count -gt 0) {
+    throw "Verification failed: downloaded license is missing expected term(s): $($missingLicenseTerms -join ', ')."
 }
 
 Write-Host "Downloaded $($downloadedIcons.Count) SVG files to $targetOutputDirectory"
