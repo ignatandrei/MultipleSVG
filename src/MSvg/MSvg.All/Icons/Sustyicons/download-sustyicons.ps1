@@ -15,7 +15,7 @@ $ErrorActionPreference = "Stop"
 
 $headers = @{
     "Accept" = "application/vnd.github+json"
-    "User-Agent" = "MSvg-Sustyicons-Downloader"
+    "User-Agent" = "MSvg-SustyIcons-Downloader"
 }
 
 if (-not [string]::IsNullOrWhiteSpace($GitHubToken)) {
@@ -53,7 +53,8 @@ if ([string]::IsNullOrWhiteSpace($TreeFilePath)) {
         $treeResponse = Invoke-RestMethod -Uri $treeUrl -Headers $headers
     }
     catch {
-        throw "Failed to fetch repository tree from $treeUrl. Check repository/branch values, connectivity, and GitHub token configuration."
+        $authState = if ([string]::IsNullOrWhiteSpace($GitHubToken)) { "no GitHub token was provided" } else { "a GitHub token was provided" }
+        throw "Failed to fetch repository tree from $treeUrl. Check repository/branch values, connectivity, rate limiting, and token permissions ($authState)."
     }
 }
 else {
@@ -83,10 +84,6 @@ if ($icons.Count -eq 0) {
 
 foreach ($icon in $icons) {
     $relativePath = $icon.path -replace ("^{0}/" -f [regex]::Escape($IconsPath)), ""
-    if ($relativePath -eq $icon.path) {
-        throw "Unexpected icon path '$($icon.path)' for IconsPath '$IconsPath'."
-    }
-
     $destinationPath = Join-Path $targetOutputDirectory $relativePath
     $destinationDirectory = Split-Path -Parent $destinationPath
 
