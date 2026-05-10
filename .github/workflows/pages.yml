@@ -1,0 +1,68 @@
+name: pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Publish Blazor app
+        shell: pwsh
+        run: dotnet publish .\src\MSvg\MSVG.BlazorShow\MSVG.BlazorShow.csproj -c Release -o .\artifacts\pages
+
+      - name: Prepare GitHub Pages artifact
+        shell: pwsh
+        run: |
+          $indexPath = '.\artifacts\pages\wwwroot\index.html'
+          $basePath = '${{ steps.pages.outputs.base_path }}'
+          $baseHref = if ([string]::IsNullOrWhiteSpace($basePath)) { '/' } else { $basePath.TrimEnd('/') + '/' }
+
+          $indexContent = Get-Content $indexPath -Raw
+          $updatedContent = $indexContent.Replace('<base href="/" />', "<base href=""$baseHref"" />")
+          Set-Content $indexPath $updatedContent -NoNewline
+
+          Copy-Item $indexPath '.\artifacts\pages\wwwroot\404.html' -Force
+          New-Item '.\artifacts\pages\wwwroot\.nojekyll' -ItemType File -Force | Out-Null
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .\artifacts\pages\wwwroot
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
