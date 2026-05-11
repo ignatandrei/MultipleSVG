@@ -1,8 +1,73 @@
-﻿@page "/"
+@page "/"
+@using MSvg.All
 
 <PageTitle>Home</PageTitle>
 
-<NavLink class="nav-link" href="icons">
-    <span class="bi bi-grid-3x3-gap-fill-nav-menu" aria-hidden="true"></span> <h1>Click Icons</h1>
+<div class="container-fluid px-0">
+    <div class="p-4 p-md-5 mb-4 bg-body-tertiary border rounded-3">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-semibold mb-3">Browse the MSvg icon libraries</h1>
+                <p class="lead mb-3">
+                    Explore <strong>@TotalIconCount</strong> icons from <strong>@IconLibraries.Length</strong> libraries in one place.
+                </p>
+                <p class="text-body-secondary mb-0">
+                    The catalog includes Bootstrap, Lucide, Heroicons, Azure, Microsoft 365, Dynamics 365, Iconoir, Leungwensen, Susty Icons, and more.
+                </p>
+            </div>
 
-</NavLink>
+            <div class="col-lg-4">
+                <div class="d-grid gap-3">
+                    <NavLink class="btn btn-primary btn-lg w-100 py-3 fw-semibold shadow-sm" href="icons">
+                        Open the Icons browser
+                    </NavLink>
+                    <a class="btn btn-outline-secondary w-100 py-3 fw-semibold"
+                       href="https://github.com/ignatandrei/MultipleSVG"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Star on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var library in IconLibraries)
+        {
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <h2 class="h5 card-title mb-2">@library.Name</h2>
+                                <p class="card-text text-body-secondary mb-0">Available icons in this library.</p>
+                            </div>
+                            <span class="badge text-bg-secondary fs-6">@library.IconNames.Count</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h2 class="h4 mb-3">Use it in a Blazor Razor file</h2>
+            <p class="text-body-secondary">
+                Add the namespaces and render an icon directly in your <code>.razor</code> page or component.
+            </p>
+            <pre class="mb-0"><code>@@using MSvg.All
+@@using MSvg.Blazor.Components
+
+&lt;SvgIconPreview Icon="@@LucideIcons.Activity" Size="40" /&gt;</code></pre>
+        </div>
+    </div>
+</div>
+
+@code {
+    private static readonly IconLibraryDefinition[] IconLibraries = [.. IconLibraryDefinition.Libraries
+        .OrderBy(library => library.Name, StringComparer.OrdinalIgnoreCase)];
+
+    private static readonly int TotalIconCount = IconLibraries.Sum(library => library.IconNames.Count);
+}
