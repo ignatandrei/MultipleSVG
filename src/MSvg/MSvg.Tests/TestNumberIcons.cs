@@ -18,7 +18,7 @@ public sealed class TestNumberIcons
         Assert.HasCount(954, Microsoft_365_content_icons.IconNames);
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("MonitorPlay")]
     [DataRow("monitor-play")]
     public void FindIconFromName(string iconName)
