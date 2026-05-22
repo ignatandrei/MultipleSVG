@@ -7,20 +7,21 @@ public sealed record IconLibraryDefinition(
         string Name,
         IReadOnlyList<string> IconNames,
         Func<string, IconDto?> FromName,
-        Func<string ,IEnumerable<string>> MaybeIs
+        Func<string ,IEnumerable<string>> MaybeIs,
+        Func<string,string?> FromNameFile
         )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
-        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs),
-        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs),
-        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs),
-        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs),
-        new(Azure_Public_Service_Icons.NameLibrary,Azure_Public_Service_Icons.IconNames,Azure_Public_Service_Icons.FromName,Azure_Public_Service_Icons.MaybeIs),
-        new(Dynamics_365_App_Icons.NameLibrary,Dynamics_365_App_Icons.IconNames,Dynamics_365_App_Icons.FromName,Dynamics_365_App_Icons.MaybeIs),
-        new(Microsoft_365_content_icons.NameLibrary,Microsoft_365_content_icons.IconNames,Microsoft_365_content_icons.FromName,Microsoft_365_content_icons.MaybeIs),
-        new(IconNoir.NameLibrary,IconNoir.IconNames,IconNoir.FromName,IconNoir.MaybeIs),
-        new(Leungwensen.NameLibrary,Leungwensen.IconNames,Leungwensen.FromName,Leungwensen.MaybeIs),
-        new (SustyIcons.NameLibrary,SustyIcons.IconNames,SustyIcons.FromName,SustyIcons.MaybeIs),
+        new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs,BootStrapIcons.FromNameFileLookup),
+        new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs,LucideIcons.FromNameFileLookup),
+        new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs,TailwindlabsHeroicons.FromNameFileLookup),
+        new(GlinckerTheSvgIcons.NameLibrary, GlinckerTheSvgIcons.IconNames, GlinckerTheSvgIcons.FromName,GlinckerTheSvgIcons.MaybeIs,GlinckerTheSvgIcons.FromNameFileLookup),
+        new(Azure_Public_Service_Icons.NameLibrary,Azure_Public_Service_Icons.IconNames,Azure_Public_Service_Icons.FromName,Azure_Public_Service_Icons.MaybeIs,Azure_Public_Service_Icons.FromNameFileLookup),
+        new(Dynamics_365_App_Icons.NameLibrary,Dynamics_365_App_Icons.IconNames,Dynamics_365_App_Icons.FromName,Dynamics_365_App_Icons.MaybeIs,Dynamics_365_App_Icons.FromNameFileLookup),
+        new(Microsoft_365_content_icons.NameLibrary,Microsoft_365_content_icons.IconNames,Microsoft_365_content_icons.FromName,Microsoft_365_content_icons.MaybeIs,Microsoft_365_content_icons.FromNameFileLookup),
+        new(IconNoir.NameLibrary,IconNoir.IconNames,IconNoir.FromName,IconNoir.MaybeIs,IconNoir.FromNameFileLookup),
+        new(Leungwensen.NameLibrary,Leungwensen.IconNames,Leungwensen.FromName,Leungwensen.MaybeIs,Leungwensen.FromNameFileLookup),
+        new (SustyIcons.NameLibrary,SustyIcons.IconNames,SustyIcons.FromName,SustyIcons.MaybeIs,SustyIcons.FromNameFileLookup   ),
 
     ];
 }
@@ -37,11 +38,39 @@ public static class AllIconNames
             .Select(l => new Func<string, IconFrom?>(x => FromNameLibrary(l.Name, x, l.FromName)))
             .ToArray();
     }
-    private static IconFrom? FromNameLibrary(string nameLibrary ,string name, Func<string, IconDto?> generator)
+    public static string? FromNameFileLookup(string library,string? name)
+    {
+        if(name==null) return null;
+        var f = IconLibraryDefinition.Libraries.FirstOrDefault(l => l.Name == library);
+        if (f == null) return null;
+        return f.FromNameFile(name);
+    }
+    public static IEnumerable<string> FromNameFileLookup(string name)
+    {
+        foreach (var f in IconLibraryDefinition.Libraries)
+        {
+            var file = f.FromNameFile(name);
+            if (file != null) yield return file;
+        }
+    }
+     private static IconFrom? FromNameLibrary(string nameLibrary ,string name, Func<string, IconDto?> generator)
     {
         var icon = generator(name);
         if(icon == null) return null;
         return new IconFrom(nameLibrary, icon);
+    }
+    public static IconFrom? FromNameAndLibrary(string library, string name)
+    {
+        foreach (var f in IconGenerator)
+        {
+            var data = f(name);
+            if (data != null && data.library == library)
+            {
+                return data;
+            }
+        }
+
+        return null;
     }
     public static IEnumerable<IconFrom> FromName(string name)
     {

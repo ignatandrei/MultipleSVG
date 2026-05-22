@@ -1,0 +1,28 @@
+@page "/icons"
+@using MSvg.All
+@using MSvg.Blazor.Pages
+
+<PageTitle>Icons</PageTitle>
+
+<Icons >
+
+<TemplateIcon Context="entry">
+    <div class="mt-2">
+        <small class="text-body-secondary">
+                SvgIconPreview Icon ="@FullName(entry)"  Size = "40" CssClass = "icon-svg" Title = "@entry.Icon.Name"
+        </small>
+    </div>
+</TemplateIcon>
+
+</Icons>
+
+@code {
+    public string FullName(IconFrom? icon){
+        if (icon is null) return "";
+        var name = icon.Icon.Name;
+        var library = icon.library;
+        var lookup = AllIconNames.FromNameAndLibrary(library, name);
+        var lookupName = AllIconNames.FromNameFileLookup(library, lookup?.Icon?.Name);
+        return $"{library}.{lookupName}";
+    }
+}

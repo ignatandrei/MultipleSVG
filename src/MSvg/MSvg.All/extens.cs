@@ -3,9 +3,14 @@ using System.Text;
 
 namespace MSvg.All;
 
-public record IconFrom(string library, IconDto Icon);
+public record IconFrom(string library, IconDto Icon)
+{
+    public string Name => Icon.Name;
+    
+}
 public static class MyExtensions
 {
+    
     extension(string value)
     {
         public string NormalizeMe()
