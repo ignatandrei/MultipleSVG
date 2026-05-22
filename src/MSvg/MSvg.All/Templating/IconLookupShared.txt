@@ -73,8 +73,21 @@ namespace {{data.nameSpace}} {
 		{{end}}
 		};
 
+		public static global::System.Collections.Generic.Dictionary<string, string> FromNameFile = new()
+		{
+		{{ for file in filterForFolder }}
+			{"{{file.nameNoExt}}", "{{file.namePascal}}"},
+		{{end}}
+		};
 
-		private static readonly Lazy<global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?>> IconsByName = new(CreateIconsByName);
+		public static string? FromNameFileLookup(string name)
+		{
+			if (FromNameFile.TryGetValue(name, out var result))
+				return result;
+			return null;
+		}
+
+		public static readonly Lazy<global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?>> IconsByName = new(CreateIconsByName);
 
 		private static global::System.Collections.Generic.Dictionary<string, global::SvgIconGenerator.IconDto?> CreateIconsByName()
 		{

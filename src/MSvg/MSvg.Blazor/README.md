@@ -29,3 +29,12 @@ To expose the packaged `/icons` page, include the assembly in your router:
     ...
 </Router>
 ```
+
+You can also render `Icons` directly as a component and provide a custom template for each icon card:
+
+```razor
+@using MSvg.Blazor.Pages
+@using MSvg.All
+
+<Icons Template="@(icon => @<a href="@($"/icons/{icon.library}/{icon.Icon.Name}")">@icon.Icon.Name</a>)" />
+```

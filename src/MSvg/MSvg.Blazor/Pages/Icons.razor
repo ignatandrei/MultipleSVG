@@ -42,6 +42,14 @@
                         <div class="icon-name">@entry.Icon.Name</div>
                         <div class="icon-library">@entry.library</div>
                     </div>
+                    @if (TemplateIcon is not null)
+                    {
+                        @TemplateIcon(entry)
+                    }
+                    else
+                    {
+                        <span>Here must be TemplateIcon Context="entry" </span>
+                    }
                 </div>
             }
         </div>
@@ -62,6 +70,9 @@
     private ICollection<IconFrom[]> FilteredIconRows => filteredIconRows;
 
     private bool hasSearchText => !string.IsNullOrWhiteSpace(searchText);
+
+    [Parameter]
+    public RenderFragment<IconFrom>? TemplateIcon { get; set; }
 
     private string SearchText
     {
