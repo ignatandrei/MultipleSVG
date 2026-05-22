@@ -36,5 +36,5 @@ You can also render `Icons` directly as a component and provide a custom templat
 @using MSvg.Blazor.Pages
 @using MSvg.All
 
-<Icons TemplateIcon="@(icon => @<a href="@($"/icons/{icon.library}/{icon.Icon.Name}")">@icon.Icon.Name</a>)" />
+<Icons Template="@(icon => @<a href="@($"/icons/{icon.library}/{icon.Icon.Name}")">@icon.Icon.Name</a>)" />
 ```
