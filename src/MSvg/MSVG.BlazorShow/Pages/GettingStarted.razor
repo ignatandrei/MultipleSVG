@@ -1,0 +1,54 @@
+@page "/getting-started"
+@using MSvg.All
+@using MSvg.Blazor.Components
+
+<PageTitle>Getting started</PageTitle>
+
+<h1>Add and display icons</h1>
+
+<p class="page-summary">
+    Add the icon packages to your app project, then render generated icons directly in Razor.
+</p>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h2 class="h4 mb-3">1. Add the references in your csproj</h2>
+        <p class="text-body-secondary">
+            Use package references in a published app, or project references while working in this repo.
+        </p>
+        <pre class="mb-0"><code>&lt;ItemGroup&gt;
+  &lt;PackageReference Include="MSvg.All" Version="2026.522.2335" /&gt;
+  &lt;PackageReference Include="MSvg.Blazor" Version="2026.522.2335" /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h2 class="h4 mb-3">2. Use the generated icons in Razor</h2>
+        <p class="text-body-secondary">
+            Import the namespaces once, then render a preview component with any generated icon.
+        </p>
+        <pre class="mb-0"><code>@@using MSvg.All
+@@using MSvg.Blazor.Components
+
+&lt;SvgIconPreview Icon="@@LucideIcons.Activity" Size="40" CssClass="text-primary" /&gt;
+&lt;SvgIconPreview Icon="@@BootStrapIcons.AlarmFill" Size="32" CssClass="text-success" /&gt;</code></pre>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="h4 mb-3">Live example</h2>
+        <div class="d-flex flex-wrap align-items-center gap-3">
+            <SvgIconPreview Icon="@LucideIcons.Activity" Size="48" CssClass="text-primary" Title="Activity" />
+            <SvgIconPreview Icon="@BootStrapIcons.AlarmFill" Size="36" CssClass="text-success" Title="Alarm fill" />
+            <div>
+                <div class="fw-semibold">Activity</div>
+                <div class="text-body-secondary">LucideIcons.Activity</div>
+            </div>
+           
+        </div>
+    </div>
+</div>
