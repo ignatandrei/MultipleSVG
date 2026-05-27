@@ -1,31 +1,16 @@
+@inherits RazorBlade.PlainTextTemplate<ReadmeTemplate>
 
 # MultipleSVG
 
-`MSvg.All` is a .NET icon package that ships generated 9225  SVG icons from multiple sources:
+`MSvg.All` is a .NET icon package that ships generated @Model.TotalIcons  SVG icons from multiple sources:
 
+@foreach (var source in Model.LibrariesWithCount)
+{
+    <text>
+        @source.Key - number icons (@source.Value icons)
+    </text>
+}
 
-        AndflettCascade - number icons (127 icons)
-    
-        Azure_Public_Service_Icons - number icons (628 icons)
-    
-        Bootstrap - number icons (2037 icons)
-    
-        Dynamics_365_App_Icons - number icons (16 icons)
-    
-        glinckerthesvg - number icons (1170 icons)
-    
-        IconNoir - number icons (1383 icons)
-    
-        Leungwensen - number icons (369 icons)
-    
-        Lucide - number icons (1695 icons)
-    
-        Microsoft_365_content_icons - number icons (954 icons)
-    
-        SustyIcons - number icons (530 icons)
-    
-        TailwindlabsHeroicons - number icons (316 icons)
-    
 The package exposes icons as strongly typed `SvgIconGenerator.IconDto` values in the `MSvg.All` namespace.
 
 ## Install
@@ -47,29 +32,13 @@ The current package targets **.NET 10**.
 
 Each icon set is exposed through a static class:
 
+@foreach (var source in Model.LibrariesWithCount)
+{
+    <text>
+        - `@source.Key`
+    </text>
+}
 
-        - `AndflettCascade`
-    
-        - `Azure_Public_Service_Icons`
-    
-        - `Bootstrap`
-    
-        - `Dynamics_365_App_Icons`
-    
-        - `glinckerthesvg`
-    
-        - `IconNoir`
-    
-        - `Leungwensen`
-    
-        - `Lucide`
-    
-        - `Microsoft_365_content_icons`
-    
-        - `SustyIcons`
-    
-        - `TailwindlabsHeroicons`
-    
     
 Example:
 
