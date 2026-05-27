@@ -38,6 +38,7 @@
 		<AdditionalFiles Include="Icons/IconNoir/*.svg" />
 		<AdditionalFiles Include="Icons/Leungwensen/*.svg" />
 		<AdditionalFiles Include="Icons/SustyIcons/*.svg" />
+		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
