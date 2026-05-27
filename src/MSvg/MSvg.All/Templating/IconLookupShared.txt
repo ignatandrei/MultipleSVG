@@ -31,6 +31,9 @@ func folderNameForClass(className)
 	if className == "SustyIcons"
 		ret "SustyIcons"
 	end
+	if className == "AndflettCascade"
+		ret "AndflettCascade"
+	end
 	ret ""
 end
 
