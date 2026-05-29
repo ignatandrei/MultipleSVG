@@ -37,6 +37,9 @@ func folderNameForClass(className)
 	if className == "artcoholic_akar_icons"
 		ret "artcoholic_akar_icons"
 	end
+	if className == "ant_design_icons"
+		ret "ant_design_icons"
+	end
 	ret ""
 end
 
