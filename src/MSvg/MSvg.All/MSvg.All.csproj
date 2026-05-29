@@ -39,6 +39,8 @@
 		<AdditionalFiles Include="Icons/Leungwensen/*.svg" />
 		<AdditionalFiles Include="Icons/SustyIcons/*.svg" />
 		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
+		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
+		<AdditionalFiles Include="Icons/artcoholic_akar_icons/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
