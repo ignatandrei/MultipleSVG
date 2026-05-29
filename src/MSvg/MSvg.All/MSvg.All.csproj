@@ -41,6 +41,7 @@
 		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
 		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
 		<AdditionalFiles Include="Icons/artcoholic_akar_icons/*.svg" />
+		<AdditionalFiles Include="Icons/ant_design_icons/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
