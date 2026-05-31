@@ -40,6 +40,9 @@ func folderNameForClass(className)
 	if className == "ant_design_icons"
 		ret "ant_design_icons"
 	end
+	if className == "cyberalien_line_md"
+		ret "cyberalien_line_md"
+	end
 	ret ""
 end
 

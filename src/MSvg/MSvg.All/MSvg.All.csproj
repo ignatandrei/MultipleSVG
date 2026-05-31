@@ -17,6 +17,7 @@
     <RepositoryType>git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+	  <Features>$(Features);experimental-data-section-string-literals</Features>
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Fastenshtein" Version="1.0.12" />
@@ -42,6 +43,8 @@
 		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
 		<AdditionalFiles Include="Icons/artcoholic_akar_icons/*.svg" />
 		<AdditionalFiles Include="Icons/ant_design_icons/*.svg" />
+		<AdditionalFiles Include="Icons/cyberalien_line_md/*.svg" />
+		
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
