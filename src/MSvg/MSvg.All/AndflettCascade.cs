@@ -1,8 +1,5 @@
-﻿using RSCG_TemplatingCommon;
-using SvgIconGenerator;
+﻿namespace MSvg.All;
 
-namespace MSvg.All;
-
-[GenerateIcons("**/AndflettCascade/*.svg")]
-[IGenerateDataFromAdditionalFiles("IconLookupShared")]
+[SvgIconGenerator.GenerateIcons("**/AndflettCascade/*.svg")]
+[RSCG_TemplatingCommon.IGenerateDataFromAdditionalFiles("IconLookupShared")]
 public static partial class AndflettCascade;

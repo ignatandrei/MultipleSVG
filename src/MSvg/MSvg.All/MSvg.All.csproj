@@ -40,14 +40,13 @@
 		<AdditionalFiles Include="Icons/Leungwensen/*.svg" />
 		<AdditionalFiles Include="Icons/SustyIcons/*.svg" />
 		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
-		<AdditionalFiles Include="Icons/AndflettCascade/*.svg" />
 		<AdditionalFiles Include="Icons/artcoholic_akar_icons/*.svg" />
 		<AdditionalFiles Include="Icons/ant_design_icons/*.svg" />
 		<AdditionalFiles Include="Icons/cyberalien_line_md/*.svg" />
 		<AdditionalFiles Include="Icons/BitcoinDesign_Bitcoin_Icons/*.svg" />
+		<AdditionalFiles Include="Icons/box_icons_boxicons_core/*.svg" />
 
 
-		
 
 	</ItemGroup>
 	<ItemGroup>

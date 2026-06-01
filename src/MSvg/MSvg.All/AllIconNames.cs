@@ -25,8 +25,10 @@ public sealed record IconLibraryDefinition(
         new (AndflettCascade.NameLibrary,AndflettCascade.IconNames,AndflettCascade.FromName,AndflettCascade.MaybeIs,AndflettCascade.FromNameFileLookup   ),
         new (artcoholic_akar_icons.NameLibrary,artcoholic_akar_icons.IconNames,artcoholic_akar_icons.FromName,artcoholic_akar_icons.MaybeIs,artcoholic_akar_icons.FromNameFileLookup   ),
         new (ant_design_icons.NameLibrary,ant_design_icons.IconNames,ant_design_icons.FromName,ant_design_icons.MaybeIs,ant_design_icons.FromNameFileLookup   ),
-        new (cyberalien_line_md.NameLibrary,cyberalien_line_md.IconNames,cyberalien_line_md.FromName,cyberalien_line_md.MaybeIs,cyberalien_line_md.FromNameFileLookup   )
-    ];
+        new (cyberalien_line_md.NameLibrary,cyberalien_line_md.IconNames,cyberalien_line_md.FromName,cyberalien_line_md.MaybeIs,cyberalien_line_md.FromNameFileLookup   ),
+        new (box_icons_boxicons_core.NameLibrary,box_icons_boxicons_core.IconNames,box_icons_boxicons_core.FromName,box_icons_boxicons_core.MaybeIs,box_icons_boxicons_core.FromNameFileLookup   ),
+
+        ];
 }
 
 public static class AllIconNames
