@@ -45,9 +45,9 @@
 		<AdditionalFiles Include="Icons/cyberalien_line_md/*.svg" />
 		<AdditionalFiles Include="Icons/BitcoinDesign_Bitcoin_Icons/*.svg" />
 		<AdditionalFiles Include="Icons/box_icons_boxicons_core/*.svg" />
+		<AdditionalFiles Include="Icons/danklammer_bytesize_icons/*.svg" />
 
-
-
+		
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />

@@ -49,6 +49,9 @@ func folderNameForClass(className)
 	if className == "box_icons_boxicons_core"
 		ret "box_icons_boxicons_core"
 	end
+	if className == "danklammer_bytesize_icons"
+		ret "danklammer_bytesize_icons"
+	end
 	ret ""
 end
 
