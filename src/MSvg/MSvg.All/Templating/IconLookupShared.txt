@@ -43,6 +43,9 @@ func folderNameForClass(className)
 	if className == "cyberalien_line_md"
 		ret "cyberalien_line_md"
 	end
+	if className == "BitcoinDesign_Bitcoin_Icons"
+		ret "BitcoinDesign_Bitcoin_Icons"
+	end
 	ret ""
 end
 

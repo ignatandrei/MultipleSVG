@@ -44,7 +44,11 @@
 		<AdditionalFiles Include="Icons/artcoholic_akar_icons/*.svg" />
 		<AdditionalFiles Include="Icons/ant_design_icons/*.svg" />
 		<AdditionalFiles Include="Icons/cyberalien_line_md/*.svg" />
+		<AdditionalFiles Include="Icons/BitcoinDesign_Bitcoin_Icons/*.svg" />
+
+
 		
+
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
