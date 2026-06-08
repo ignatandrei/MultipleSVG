@@ -29,6 +29,7 @@ public sealed record IconLibraryDefinition(
         new (box_icons_boxicons_core.NameLibrary,box_icons_boxicons_core.IconNames,box_icons_boxicons_core.FromName,box_icons_boxicons_core.MaybeIs,box_icons_boxicons_core.FromNameFileLookup   ),
         new (danklammer_bytesize_icons.NameLibrary,danklammer_bytesize_icons.IconNames,danklammer_bytesize_icons.FromName,danklammer_bytesize_icons.MaybeIs,danklammer_bytesize_icons.FromNameFileLookup   ),
         new (catppuccin_vscode_icons.NameLibrary,catppuccin_vscode_icons.IconNames,catppuccin_vscode_icons.FromName,catppuccin_vscode_icons.MaybeIs,catppuccin_vscode_icons.FromNameFileLookup   ),
+        new (jaynewey_charm_icons.NameLibrary,jaynewey_charm_icons.IconNames,jaynewey_charm_icons.FromName,jaynewey_charm_icons.MaybeIs,jaynewey_charm_icons.FromNameFileLookup   ),
         ];
 }
 
