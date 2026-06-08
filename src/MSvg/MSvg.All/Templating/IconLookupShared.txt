@@ -61,6 +61,9 @@ func folderNameForClass(className)
 	if className == "HatScripts_circle_flags"
 		ret "HatScripts_circle_flags"
 	end
+	if className == "vmware_archive_clarity_assets"
+		ret "vmware_archive_clarity_assets"
+	end
 	ret ""
 end
 

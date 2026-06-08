@@ -31,6 +31,7 @@ public sealed record IconLibraryDefinition(
         new (catppuccin_vscode_icons.NameLibrary,catppuccin_vscode_icons.IconNames,catppuccin_vscode_icons.FromName,catppuccin_vscode_icons.MaybeIs,catppuccin_vscode_icons.FromNameFileLookup   ),
         new (jaynewey_charm_icons.NameLibrary,jaynewey_charm_icons.IconNames,jaynewey_charm_icons.FromName,jaynewey_charm_icons.MaybeIs,jaynewey_charm_icons.FromNameFileLookup   ),
         new (HatScripts_circle_flags.NameLibrary,HatScripts_circle_flags.IconNames,HatScripts_circle_flags.FromName,HatScripts_circle_flags.MaybeIs,HatScripts_circle_flags.FromNameFileLookup   ),
+        new (vmware_archive_clarity_assets.NameLibrary,vmware_archive_clarity_assets.IconNames,vmware_archive_clarity_assets.FromName,vmware_archive_clarity_assets.MaybeIs,vmware_archive_clarity_assets.FromNameFileLookup   )
     ];
 }
 

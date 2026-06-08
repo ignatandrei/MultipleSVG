@@ -49,7 +49,7 @@
 		<AdditionalFiles Include="Icons/catppuccin_vscode_icons/*.svg" />
 		<AdditionalFiles Include="Icons/jaynewey_charm_icons/*.svg" />
 		<AdditionalFiles Include="Icons/HatScripts_circle_flags/*.svg" />
-		
+		<AdditionalFiles Include="Icons/vmware_archive_clarity_assets/*.svg" />
 
 
 	</ItemGroup>
