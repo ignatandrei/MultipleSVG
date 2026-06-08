@@ -46,6 +46,7 @@
 		<AdditionalFiles Include="Icons/BitcoinDesign_Bitcoin_Icons/*.svg" />
 		<AdditionalFiles Include="Icons/box_icons_boxicons_core/*.svg" />
 		<AdditionalFiles Include="Icons/danklammer_bytesize_icons/*.svg" />
+		<AdditionalFiles Include="Icons/catppuccin_vscode_icons/*.svg" />
 
 		
 	</ItemGroup>

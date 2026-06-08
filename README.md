@@ -1,7 +1,7 @@
 
 # MultipleSVG
 
-`MSvg.All` is a .NET icon package that ships generated 13628  SVG icons from multiple sources:
+`MSvg.All` is a .NET icon package that ships generated 14283  SVG icons from multiple sources:
 
 
         AndflettCascade - number icons (127 icons)
@@ -15,6 +15,8 @@
         Bootstrap - number icons (2037 icons)
     
         box_icons_boxicons_core - number icons (2179 icons)
+    
+        catppuccin_vscode_icons - number icons (655 icons)
     
         cyberalien_line_md - number icons (1222 icons)
     
@@ -69,6 +71,8 @@ Each icon set is exposed through a static class:
         - `Bootstrap`
     
         - `box_icons_boxicons_core`
+    
+        - `catppuccin_vscode_icons`
     
         - `cyberalien_line_md`
     
