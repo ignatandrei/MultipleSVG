@@ -55,6 +55,9 @@ func folderNameForClass(className)
 	if className == "catppuccin_vscode_icons"
 		ret "catppuccin_vscode_icons"
 	end
+	if className == "jaynewey_charm_icons"
+		ret "jaynewey_charm_icons"
+	end
 	ret ""
 end
 
