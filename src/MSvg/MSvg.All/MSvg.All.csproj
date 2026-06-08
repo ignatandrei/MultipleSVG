@@ -48,7 +48,9 @@
 		<AdditionalFiles Include="Icons/danklammer_bytesize_icons/*.svg" />
 		<AdditionalFiles Include="Icons/catppuccin_vscode_icons/*.svg" />
 		<AdditionalFiles Include="Icons/jaynewey_charm_icons/*.svg" />
+		<AdditionalFiles Include="Icons/HatScripts_circle_flags/*.svg" />
 		
+
 
 	</ItemGroup>
 	<ItemGroup>
