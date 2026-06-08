@@ -2,16 +2,18 @@
 
 # MultipleSVG
 
-`MSvg.All` is a .NET icon package that ships generated @Model.TotalIcons  SVG icons from multiple sources:
+`MSvg.All` is a .NET icon package that ships generated @Model.TotalIcons.ToString("#,###")  SVG icons from multiple sources:
 
 @foreach (var source in Model.LibrariesWithCount)
 {
     <text>
-        @source.Key - number icons (@source.Value icons)
+        @source.Key - number icons (@source.Value.ToString("#,###") icons)
     </text>
 }
 
 The package exposes icons as strongly typed `SvgIconGenerator.IconDto` values in the `MSvg.All` namespace.
+
+See in action at https://ignatandrei.github.io/MultipleSVG/icons    
 
 ## Install
 

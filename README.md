@@ -1,7 +1,7 @@
 
 # MultipleSVG
 
-`MSvg.All` is a .NET icon package that ships generated 14283  SVG icons from multiple sources:
+`MSvg.All` is a .NET icon package that ships generated 16,066  SVG icons from multiple sources:
 
 
         AndflettCascade - number icons (127 icons)
@@ -12,25 +12,29 @@
     
         Azure_Public_Service_Icons - number icons (628 icons)
     
-        Bootstrap - number icons (2037 icons)
+        Bootstrap - number icons (2,037 icons)
     
-        box_icons_boxicons_core - number icons (2179 icons)
+        box_icons_boxicons_core - number icons (2,179 icons)
     
         catppuccin_vscode_icons - number icons (655 icons)
     
-        cyberalien_line_md - number icons (1222 icons)
+        cyberalien_line_md - number icons (1,222 icons)
     
         danklammer_bytesize_icons - number icons (101 icons)
     
         Dynamics_365_App_Icons - number icons (16 icons)
     
-        glinckerthesvg - number icons (1170 icons)
+        glinckerthesvg - number icons (1,170 icons)
     
-        IconNoir - number icons (1383 icons)
+        HatScripts_circle_flags - number icons (417 icons)
+    
+        IconNoir - number icons (1,383 icons)
+    
+        jaynewey_charm_icons - number icons (261 icons)
     
         Leungwensen - number icons (369 icons)
     
-        Lucide - number icons (1695 icons)
+        Lucide - number icons (1,695 icons)
     
         Microsoft_365_content_icons - number icons (954 icons)
     
@@ -38,7 +42,11 @@
     
         TailwindlabsHeroicons - number icons (316 icons)
     
+        vmware_archive_clarity_assets - number icons (1,105 icons)
+    
 The package exposes icons as strongly typed `SvgIconGenerator.IconDto` values in the `MSvg.All` namespace.
+
+See in action at https://ignatandrei.github.io/MultipleSVG/icons    
 
 ## Install
 
@@ -82,7 +90,11 @@ Each icon set is exposed through a static class:
     
         - `glinckerthesvg`
     
+        - `HatScripts_circle_flags`
+    
         - `IconNoir`
+    
+        - `jaynewey_charm_icons`
     
         - `Leungwensen`
     
@@ -93,6 +105,8 @@ Each icon set is exposed through a static class:
         - `SustyIcons`
     
         - `TailwindlabsHeroicons`
+    
+        - `vmware_archive_clarity_assets`
     
     
 Example:
