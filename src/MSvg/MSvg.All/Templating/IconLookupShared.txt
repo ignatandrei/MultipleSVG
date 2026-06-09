@@ -67,6 +67,9 @@ func folderNameForClass(className)
 	if className == "codex_teamicons"
 		ret "codex_teamicons"
 	end
+	if className == "devicons_devicon"
+		ret "devicons_devicon"
+	end
 	ret ""
 end
 

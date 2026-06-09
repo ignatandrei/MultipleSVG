@@ -33,6 +33,7 @@ public sealed record IconLibraryDefinition(
         new (HatScripts_circle_flags.NameLibrary,HatScripts_circle_flags.IconNames,HatScripts_circle_flags.FromName,HatScripts_circle_flags.MaybeIs,HatScripts_circle_flags.FromNameFileLookup   ),
         new (vmware_archive_clarity_assets.NameLibrary,vmware_archive_clarity_assets.IconNames,vmware_archive_clarity_assets.FromName,vmware_archive_clarity_assets.MaybeIs,vmware_archive_clarity_assets.FromNameFileLookup   ),
         new (codex_teamicons.NameLibrary,codex_teamicons.IconNames,codex_teamicons.FromName,codex_teamicons.MaybeIs,codex_teamicons.FromNameFileLookup   ),
+        new (devicons_devicon.NameLibrary,devicons_devicon.IconNames,devicons_devicon.FromName,devicons_devicon.MaybeIs,devicons_devicon.FromNameFileLookup   ),
 
      ];
 }
