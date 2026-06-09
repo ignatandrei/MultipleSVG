@@ -54,6 +54,8 @@
 		<AdditionalFiles Include="Icons/devicons_devicon/*.svg" />
 		<AdditionalFiles Include="Icons/fernandcf_duo_icons/*.svg" />
 		<AdditionalFiles Include="Icons/element_plus_element_plus_icons/*.svg" />
+		<AdditionalFiles Include="Icons/SUSE_UIUX_eos_icons/*.svg" />
+		
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
