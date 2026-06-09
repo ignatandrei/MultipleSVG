@@ -73,6 +73,9 @@ func folderNameForClass(className)
 	if className == "fernandcf_duo_icons"
 		ret "fernandcf_duo_icons"
 	end
+	if className == "SUSE_UIUX_eos_icons"
+		ret "SUSE_UIUX_eos_icons"
+	end
 	ret className
 end
 
