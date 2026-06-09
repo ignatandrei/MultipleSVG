@@ -34,6 +34,7 @@ public sealed record IconLibraryDefinition(
         new (vmware_archive_clarity_assets.NameLibrary,vmware_archive_clarity_assets.IconNames,vmware_archive_clarity_assets.FromName,vmware_archive_clarity_assets.MaybeIs,vmware_archive_clarity_assets.FromNameFileLookup   ),
         new (codex_teamicons.NameLibrary,codex_teamicons.IconNames,codex_teamicons.FromName,codex_teamicons.MaybeIs,codex_teamicons.FromNameFileLookup   ),
         new (devicons_devicon.NameLibrary,devicons_devicon.IconNames,devicons_devicon.FromName,devicons_devicon.MaybeIs,devicons_devicon.FromNameFileLookup   ),
+        new (fernandcf_duo_icons.NameLibrary,fernandcf_duo_icons.IconNames,fernandcf_duo_icons.FromName,fernandcf_duo_icons.MaybeIs,fernandcf_duo_icons.FromNameFileLookup   ),
 
      ];
 }
