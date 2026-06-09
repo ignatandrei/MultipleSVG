@@ -36,7 +36,7 @@ public sealed record IconLibraryDefinition(
         new (devicons_devicon.NameLibrary,devicons_devicon.IconNames,devicons_devicon.FromName,devicons_devicon.MaybeIs,devicons_devicon.FromNameFileLookup),
         new (fernandcf_duo_icons.NameLibrary,fernandcf_duo_icons.IconNames,fernandcf_duo_icons.FromName,fernandcf_duo_icons.MaybeIs,fernandcf_duo_icons.FromNameFileLookup),
         new (element_plus_element_plus_icons.NameLibrary,element_plus_element_plus_icons.IconNames,element_plus_element_plus_icons.FromName,element_plus_element_plus_icons.MaybeIs,element_plus_element_plus_icons.FromNameFileLookup),
-
+        new (SUSE_UIUX_eos_icons.NameLibrary,SUSE_UIUX_eos_icons.IconNames,SUSE_UIUX_eos_icons.FromName,SUSE_UIUX_eos_icons.MaybeIs,SUSE_UIUX_eos_icons.FromNameFileLookup),
      ];
 }
 
