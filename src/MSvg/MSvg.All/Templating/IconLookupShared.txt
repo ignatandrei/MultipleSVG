@@ -70,6 +70,10 @@ func folderNameForClass(className)
 	if className == "devicons_devicon"
 		ret "devicons_devicon"
 	end
+	if className == "fernandcf_duo_icons"
+		ret "fernandcf_duo_icons"
+	end
+
 	ret ""
 end
 

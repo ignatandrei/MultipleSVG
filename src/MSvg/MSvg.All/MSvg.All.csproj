@@ -52,6 +52,7 @@
 		<AdditionalFiles Include="Icons/vmware_archive_clarity_assets/*.svg" />
 		<AdditionalFiles Include="Icons/codex_teamicons/*.svg" />
 		<AdditionalFiles Include="Icons/devicons_devicon/*.svg" />
+		<AdditionalFiles Include="Icons/fernandcf_duo_icons/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
