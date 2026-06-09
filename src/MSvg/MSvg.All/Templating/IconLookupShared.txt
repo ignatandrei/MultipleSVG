@@ -64,6 +64,9 @@ func folderNameForClass(className)
 	if className == "vmware_archive_clarity_assets"
 		ret "vmware_archive_clarity_assets"
 	end
+	if className == "codex_teamicons"
+		ret "codex_teamicons"
+	end
 	ret ""
 end
 

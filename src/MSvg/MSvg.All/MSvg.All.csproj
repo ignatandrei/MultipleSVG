@@ -50,8 +50,7 @@
 		<AdditionalFiles Include="Icons/jaynewey_charm_icons/*.svg" />
 		<AdditionalFiles Include="Icons/HatScripts_circle_flags/*.svg" />
 		<AdditionalFiles Include="Icons/vmware_archive_clarity_assets/*.svg" />
-
-
+		<AdditionalFiles Include="Icons/codex_teamicons/*.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />
