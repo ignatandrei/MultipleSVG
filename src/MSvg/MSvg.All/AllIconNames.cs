@@ -9,7 +9,7 @@ public sealed record IconLibraryDefinition(
         Func<string, IconDto?> FromName,
         Func<string ,IEnumerable<string>> MaybeIs,
         Func<string,string?> FromNameFile
-        )
+   )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs,BootStrapIcons.FromNameFileLookup),
@@ -21,20 +21,21 @@ public sealed record IconLibraryDefinition(
         new(Microsoft_365_content_icons.NameLibrary,Microsoft_365_content_icons.IconNames,Microsoft_365_content_icons.FromName,Microsoft_365_content_icons.MaybeIs,Microsoft_365_content_icons.FromNameFileLookup),
         new(IconNoir.NameLibrary,IconNoir.IconNames,IconNoir.FromName,IconNoir.MaybeIs,IconNoir.FromNameFileLookup),
         new(Leungwensen.NameLibrary,Leungwensen.IconNames,Leungwensen.FromName,Leungwensen.MaybeIs,Leungwensen.FromNameFileLookup),
-        new (SustyIcons.NameLibrary,SustyIcons.IconNames,SustyIcons.FromName,SustyIcons.MaybeIs,SustyIcons.FromNameFileLookup   ),
-        new (AndflettCascade.NameLibrary,AndflettCascade.IconNames,AndflettCascade.FromName,AndflettCascade.MaybeIs,AndflettCascade.FromNameFileLookup   ),
-        new (artcoholic_akar_icons.NameLibrary,artcoholic_akar_icons.IconNames,artcoholic_akar_icons.FromName,artcoholic_akar_icons.MaybeIs,artcoholic_akar_icons.FromNameFileLookup   ),
-        new (ant_design_icons.NameLibrary,ant_design_icons.IconNames,ant_design_icons.FromName,ant_design_icons.MaybeIs,ant_design_icons.FromNameFileLookup   ),
-        new (cyberalien_line_md.NameLibrary,cyberalien_line_md.IconNames,cyberalien_line_md.FromName,cyberalien_line_md.MaybeIs,cyberalien_line_md.FromNameFileLookup   ),
-        new (box_icons_boxicons_core.NameLibrary,box_icons_boxicons_core.IconNames,box_icons_boxicons_core.FromName,box_icons_boxicons_core.MaybeIs,box_icons_boxicons_core.FromNameFileLookup   ),
-        new (danklammer_bytesize_icons.NameLibrary,danklammer_bytesize_icons.IconNames,danklammer_bytesize_icons.FromName,danklammer_bytesize_icons.MaybeIs,danklammer_bytesize_icons.FromNameFileLookup   ),
-        new (catppuccin_vscode_icons.NameLibrary,catppuccin_vscode_icons.IconNames,catppuccin_vscode_icons.FromName,catppuccin_vscode_icons.MaybeIs,catppuccin_vscode_icons.FromNameFileLookup   ),
-        new (jaynewey_charm_icons.NameLibrary,jaynewey_charm_icons.IconNames,jaynewey_charm_icons.FromName,jaynewey_charm_icons.MaybeIs,jaynewey_charm_icons.FromNameFileLookup   ),
-        new (HatScripts_circle_flags.NameLibrary,HatScripts_circle_flags.IconNames,HatScripts_circle_flags.FromName,HatScripts_circle_flags.MaybeIs,HatScripts_circle_flags.FromNameFileLookup   ),
-        new (vmware_archive_clarity_assets.NameLibrary,vmware_archive_clarity_assets.IconNames,vmware_archive_clarity_assets.FromName,vmware_archive_clarity_assets.MaybeIs,vmware_archive_clarity_assets.FromNameFileLookup   ),
-        new (codex_teamicons.NameLibrary,codex_teamicons.IconNames,codex_teamicons.FromName,codex_teamicons.MaybeIs,codex_teamicons.FromNameFileLookup   ),
-        new (devicons_devicon.NameLibrary,devicons_devicon.IconNames,devicons_devicon.FromName,devicons_devicon.MaybeIs,devicons_devicon.FromNameFileLookup   ),
-        new (fernandcf_duo_icons.NameLibrary,fernandcf_duo_icons.IconNames,fernandcf_duo_icons.FromName,fernandcf_duo_icons.MaybeIs,fernandcf_duo_icons.FromNameFileLookup   ),
+        new (SustyIcons.NameLibrary,SustyIcons.IconNames,SustyIcons.FromName,SustyIcons.MaybeIs,SustyIcons.FromNameFileLookup),
+        new (AndflettCascade.NameLibrary,AndflettCascade.IconNames,AndflettCascade.FromName,AndflettCascade.MaybeIs,AndflettCascade.FromNameFileLookup),
+        new (artcoholic_akar_icons.NameLibrary,artcoholic_akar_icons.IconNames,artcoholic_akar_icons.FromName,artcoholic_akar_icons.MaybeIs,artcoholic_akar_icons.FromNameFileLookup),
+        new (ant_design_icons.NameLibrary,ant_design_icons.IconNames,ant_design_icons.FromName,ant_design_icons.MaybeIs,ant_design_icons.FromNameFileLookup),
+        new (cyberalien_line_md.NameLibrary,cyberalien_line_md.IconNames,cyberalien_line_md.FromName,cyberalien_line_md.MaybeIs,cyberalien_line_md.FromNameFileLookup),
+        new (box_icons_boxicons_core.NameLibrary,box_icons_boxicons_core.IconNames,box_icons_boxicons_core.FromName,box_icons_boxicons_core.MaybeIs,box_icons_boxicons_core.FromNameFileLookup),
+        new (danklammer_bytesize_icons.NameLibrary,danklammer_bytesize_icons.IconNames,danklammer_bytesize_icons.FromName,danklammer_bytesize_icons.MaybeIs,danklammer_bytesize_icons.FromNameFileLookup),
+        new (catppuccin_vscode_icons.NameLibrary,catppuccin_vscode_icons.IconNames,catppuccin_vscode_icons.FromName,catppuccin_vscode_icons.MaybeIs,catppuccin_vscode_icons.FromNameFileLookup),
+        new (jaynewey_charm_icons.NameLibrary,jaynewey_charm_icons.IconNames,jaynewey_charm_icons.FromName,jaynewey_charm_icons.MaybeIs,jaynewey_charm_icons.FromNameFileLookup),
+        new (HatScripts_circle_flags.NameLibrary,HatScripts_circle_flags.IconNames,HatScripts_circle_flags.FromName,HatScripts_circle_flags.MaybeIs,HatScripts_circle_flags.FromNameFileLookup),
+        new (vmware_archive_clarity_assets.NameLibrary,vmware_archive_clarity_assets.IconNames,vmware_archive_clarity_assets.FromName,vmware_archive_clarity_assets.MaybeIs,vmware_archive_clarity_assets.FromNameFileLookup),
+        new (codex_teamicons.NameLibrary,codex_teamicons.IconNames,codex_teamicons.FromName,codex_teamicons.MaybeIs,codex_teamicons.FromNameFileLookup),
+        new (devicons_devicon.NameLibrary,devicons_devicon.IconNames,devicons_devicon.FromName,devicons_devicon.MaybeIs,devicons_devicon.FromNameFileLookup),
+        new (fernandcf_duo_icons.NameLibrary,fernandcf_duo_icons.IconNames,fernandcf_duo_icons.FromName,fernandcf_duo_icons.MaybeIs,fernandcf_duo_icons.FromNameFileLookup),
+        new (element_plus_element_plus_icons.NameLibrary,element_plus_element_plus_icons.IconNames,element_plus_element_plus_icons.FromName,element_plus_element_plus_icons.MaybeIs,element_plus_element_plus_icons.FromNameFileLookup),
 
      ];
 }

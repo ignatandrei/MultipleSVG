@@ -73,8 +73,7 @@ func folderNameForClass(className)
 	if className == "fernandcf_duo_icons"
 		ret "fernandcf_duo_icons"
 	end
-
-	ret ""
+	ret className
 end
 
 func containsFolder(sv, folderName)
