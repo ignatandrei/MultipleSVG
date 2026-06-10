@@ -57,6 +57,8 @@
 		<AdditionalFiles Include="Icons/SUSE_UIUX_eos_icons/*.svg" />
 		<AdditionalFiles Include="Icons/akveo_eva_icons/*.svg" />
 		<AdditionalFiles Include="Icons/evil_icons_evil_icons/*.svg" />
+		<AdditionalFiles Include="Icons/familyjs_famicons/*.svg" />
+		
 	</ItemGroup>
 	<ItemGroup>
 		<Watch Include="**\*.txt" />

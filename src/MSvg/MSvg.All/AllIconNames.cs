@@ -38,6 +38,7 @@ public sealed record IconLibraryDefinition(
         new (element_plus_element_plus_icons.NameLibrary,element_plus_element_plus_icons.IconNames,element_plus_element_plus_icons.FromName,element_plus_element_plus_icons.MaybeIs,element_plus_element_plus_icons.FromNameFileLookup),
         new (SUSE_UIUX_eos_icons.NameLibrary,SUSE_UIUX_eos_icons.IconNames,SUSE_UIUX_eos_icons.FromName,SUSE_UIUX_eos_icons.MaybeIs,SUSE_UIUX_eos_icons.FromNameFileLookup),
         new (akveo_eva_icons.NameLibrary,akveo_eva_icons.IconNames,akveo_eva_icons.FromName,akveo_eva_icons.MaybeIs,akveo_eva_icons.FromNameFileLookup),
+        new (familyjs_famicons.NameLibrary,familyjs_famicons.IconNames,familyjs_famicons.FromName,familyjs_famicons.MaybeIs,familyjs_famicons.FromNameFileLookup),
      ];
 }
 
