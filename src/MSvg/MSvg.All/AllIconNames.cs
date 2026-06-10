@@ -1,4 +1,4 @@
-﻿
+
 using SvgIconGenerator;
 
 namespace MSvg.All;
@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
+         new (feathericon_feathericon.NameLibrary,feathericon_feathericon.IconNames,feathericon_feathericon.FromName,feathericon_feathericon.MaybeIs,feathericon_feathericon.FromNameFileLookup),
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs,BootStrapIcons.FromNameFileLookup),
         new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs,LucideIcons.FromNameFileLookup),
         new(TailwindlabsHeroicons.NameLibrary, TailwindlabsHeroicons.IconNames, TailwindlabsHeroicons.FromName,TailwindlabsHeroicons.MaybeIs,TailwindlabsHeroicons.FromNameFileLookup),
