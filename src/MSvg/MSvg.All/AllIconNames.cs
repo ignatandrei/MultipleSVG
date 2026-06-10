@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
+         new (Yummygum_flagpack_core.NameLibrary,Yummygum_flagpack_core.IconNames,Yummygum_flagpack_core.FromName,Yummygum_flagpack_core.MaybeIs,Yummygum_flagpack_core.FromNameFileLookup),
          new (lipis_flag_icons.NameLibrary,lipis_flag_icons.IconNames,lipis_flag_icons.FromName,lipis_flag_icons.MaybeIs,lipis_flag_icons.FromNameFileLookup),
          new (feathericon_feathericon.NameLibrary,feathericon_feathericon.IconNames,feathericon_feathericon.FromName,feathericon_feathericon.MaybeIs,feathericon_feathericon.FromNameFileLookup),
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs,BootStrapIcons.FromNameFileLookup),
