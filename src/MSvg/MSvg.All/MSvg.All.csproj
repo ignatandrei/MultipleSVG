@@ -29,7 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-    <AdditionalFiles Include="Icons/lipis_flag_icons_/*.svg" />
+    <AdditionalFiles Include="Icons/lipis_flag_icons/*.svg" />
     <AdditionalFiles Include="Icons/feathericon_feathericon/*.svg" />
 		<AdditionalFiles Include="Icons/Lucide/*.svg" />
 		<AdditionalFiles Include="Icons/Bootstrap/*.svg" />
