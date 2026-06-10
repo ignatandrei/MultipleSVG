@@ -28,7 +28,7 @@ if(Directory.Exists(newFolder))
 
 Directory.CreateDirectory(newFolder);
 var readmeFile = Path.Combine(newFolder, "README.md");
-File.WriteAllText(readmeFile, @"""
+File.WriteAllText(readmeFile, """
 From  , when  License was
 
 # The MIT License (MIT)

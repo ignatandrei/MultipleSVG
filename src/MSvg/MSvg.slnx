@@ -2,6 +2,7 @@
   <Project Path="MSvg.All/MSvg.All.csproj" />
   <Project Path="MSvg.Blazor/MSvg.Blazor.csproj" />
   <Project Path="MSVG.BlazorShow/MSVG.BlazorShow.csproj" Id="fe96892a-20ef-4fd4-8e18-e4cb651d21a5" />
+  <Project Path="MSvg.Generator/MSvg.Generator.csproj" Id="76bac590-b8fd-4e07-af73-d68e7173602b" />
   <Project Path="Msvg.ModifyReadMe/Msvg.ModifyReadMe.csproj" Id="24d07b17-f0dd-4a91-a490-1ca0e258ad5a" />
   <Project Path="MSvg.Tests/MSvg.Tests.csproj" />
 </Solution>
