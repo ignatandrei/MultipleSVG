@@ -17,6 +17,10 @@ if(name.Contains("https://github.com"))
     name = name.Replace("https://github.com/", "");
     name = name.Replace("/", "_");
     name= name.Replace("-", "_");
+    if(name.EndsWith("_"))
+    {
+        name = name.Substring(0, name.Length - 1);
+    }
 }
 //create icons folder if it doesn't exist
 var newFolder = Path.Combine(folderRoot, "MSvg.All", "Icons", name);

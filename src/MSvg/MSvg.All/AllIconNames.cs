@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
+         new (lipis_flag_icons.NameLibrary,lipis_flag_icons.IconNames,lipis_flag_icons.FromName,lipis_flag_icons.MaybeIs,lipis_flag_icons.FromNameFileLookup),
          new (feathericon_feathericon.NameLibrary,feathericon_feathericon.IconNames,feathericon_feathericon.FromName,feathericon_feathericon.MaybeIs,feathericon_feathericon.FromNameFileLookup),
         new(BootStrapIcons.NameLibrary, BootStrapIcons.IconNames, BootStrapIcons.FromName,BootStrapIcons.MaybeIs,BootStrapIcons.FromNameFileLookup),
         new(LucideIcons.NameLibrary, LucideIcons.IconNames, LucideIcons.FromName,LucideIcons.MaybeIs,LucideIcons.FromNameFileLookup),
