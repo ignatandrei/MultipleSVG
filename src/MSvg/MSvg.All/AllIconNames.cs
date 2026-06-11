@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
+         new (themesberg_flowbite_icons.NameLibrary,themesberg_flowbite_icons.IconNames,themesberg_flowbite_icons.FromName,themesberg_flowbite_icons.MaybeIs,themesberg_flowbite_icons.FromNameFileLookup),
          new (icons8_flat_Color_icons.NameLibrary,icons8_flat_Color_icons.IconNames,icons8_flat_Color_icons.FromName,icons8_flat_Color_icons.MaybeIs,icons8_flat_Color_icons.FromNameFileLookup),
          new (Yummygum_flagpack_core.NameLibrary,Yummygum_flagpack_core.IconNames,Yummygum_flagpack_core.FromName,Yummygum_flagpack_core.MaybeIs,Yummygum_flagpack_core.FromNameFileLookup),
          new (lipis_flag_icons.NameLibrary,lipis_flag_icons.IconNames,lipis_flag_icons.FromName,lipis_flag_icons.MaybeIs,lipis_flag_icons.FromNameFileLookup),
