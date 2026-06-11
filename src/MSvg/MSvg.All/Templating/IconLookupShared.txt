@@ -151,7 +151,7 @@ namespace {{data.nameSpace}} {
 			return icons;
 		}
 
-		public static IEnumerable<string>  MaybeIs(string name) => IconLookupShared.MaybeIs(name, IconAliases);
+		public static IEnumerable<(HowIsFound,string)>   MaybeIs(string name) => IconLookupShared.MaybeIs(name, IconAliases);
 
 		public static global::SvgIconGenerator.IconDto? FromName(string name) => IconLookupShared.FromName(name, IconsByName.Value);
 	}

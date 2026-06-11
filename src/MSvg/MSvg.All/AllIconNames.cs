@@ -7,11 +7,11 @@ public sealed record IconLibraryDefinition(
         string Name,
         IReadOnlyList<string> IconNames,
         Func<string, IconDto?> FromName,
-        Func<string ,IEnumerable<string>> MaybeIs,
+        Func<string , IEnumerable<(HowIsFound, string)>> MaybeIs,
         Func<string,string?> FromNameFile
    )
 {
-    public static readonly IconLibraryDefinition[] Libraries = [
+       public static readonly IconLibraryDefinition[] Libraries = [
          new (resolvetosavelives_healthicons.NameLibrary,resolvetosavelives_healthicons.IconNames,resolvetosavelives_healthicons.FromName,resolvetosavelives_healthicons.MaybeIs,resolvetosavelives_healthicons.FromNameFileLookup),
          new (framework7io_framework7_icons.NameLibrary,framework7io_framework7_icons.IconNames,framework7io_framework7_icons.FromName,framework7io_framework7_icons.MaybeIs,framework7io_framework7_icons.FromNameFileLookup),
          new (microsoft_fluentui_emoji.NameLibrary,microsoft_fluentui_emoji.IconNames,microsoft_fluentui_emoji.FromName,microsoft_fluentui_emoji.MaybeIs,microsoft_fluentui_emoji.FromNameFileLookup),
@@ -81,7 +81,7 @@ public static class AllIconNames
     {
         var icon = generator(name);
         if(icon == null) return null;
-        return new IconFrom(nameLibrary, icon);
+        return new IconFrom(nameLibrary, icon, HowIsFound.ExactStringInKey);
     }
     public static IconFrom? FromNameAndLibrary(string library, string name)
     {
@@ -105,13 +105,13 @@ public static class AllIconNames
         }
 
     }
-    public static IEnumerable<(string nameLibrary,string name)> MaybeIs(string name)
+    public static IEnumerable<(string nameLibrary, HowIsFound found,string name)> MaybeIs(string name)
     {
         foreach(var f in IconLibraryDefinition.Libraries)
         {
             foreach(var item in f.MaybeIs(name))
             {
-                yield return (f.Name, item);
+                yield return (f.Name, item.Item1,item.Item2);
             }
         }
         

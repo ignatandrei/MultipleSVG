@@ -3,7 +3,7 @@ using System.Text;
 
 namespace MSvg.All;
 
-public record IconFrom(string library, IconDto Icon)
+public record IconFrom(string library, IconDto Icon,HowIsFound found)
 {
     public string Name => Icon.Name;
     
