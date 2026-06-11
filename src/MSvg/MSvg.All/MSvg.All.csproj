@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/themesberg_flowbite_icons/*.svg" />
     <AdditionalFiles Include="Icons/icons8_flat_Color_icons/*.svg" />
     <AdditionalFiles Include="Icons/Yummygum_flagpack_core/*.svg" />
     <AdditionalFiles Include="Icons/lipis_flag_icons/*.svg" />
