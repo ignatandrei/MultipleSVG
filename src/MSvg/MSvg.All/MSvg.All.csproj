@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/resolvetosavelives_healthicons/*.svg" />
     <AdditionalFiles Include="Icons/framework7io_framework7_icons/*.svg" />
     <AdditionalFiles Include="Icons/microsoft_fluentui_emoji/*.svg" />
     <AdditionalFiles Include="Icons/themesberg_flowbite_icons/*.svg" />
