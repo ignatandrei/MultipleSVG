@@ -10,6 +10,8 @@ while (!string.IsNullOrEmpty(folderRoot))
     folderRoot = Directory.GetParent(folderRoot)?.FullName;
 }
 Console.WriteLine($"Using solution root {folderRoot}");
+while (true)
+{
 Console.WriteLine("Enter name:");
 string name = Console.ReadLine();
 if(name.Contains("https://github.com"))
@@ -88,3 +90,4 @@ if (insertIndex2 == -1)
 }
 allIconNamesLines.Insert(insertIndex2 + 1, $@"         new ({name}.NameLibrary,{name}.IconNames,{name}.FromName,{name}.MaybeIs,{name}.FromNameFileLookup),");
 File.WriteAllLines(allIconNamesFile, allIconNamesLines);
+}
