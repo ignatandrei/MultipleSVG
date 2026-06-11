@@ -4,6 +4,8 @@ public enum HowIsFound
     None =0 ,
     ExactStringInKey,
     ExactStringInAlias,
+    KeyStartWith,
+    AliasStartWith,
     ContainsInKey,
     ContainsInAlias,
     Levenshtein,
@@ -21,6 +23,12 @@ public static partial class IconLookupShared
 
             if(kvp.Value.Any(alias => string.Equals(alias, name, StringComparison.InvariantCultureIgnoreCase)))
                 yield return (HowIsFound.ExactStringInAlias, kvp.Key);
+            
+            if (kvp.Key.StartsWith(name, StringComparison.InvariantCultureIgnoreCase))
+                yield return (HowIsFound.KeyStartWith, kvp.Key);
+
+            if(kvp.Value.Any(alias => alias.StartsWith(name, StringComparison.InvariantCultureIgnoreCase)))
+                yield return (HowIsFound.AliasStartWith, kvp.Key);
 
             if (kvp.Key.Contains(name,StringComparison.InvariantCultureIgnoreCase))
                 yield return (HowIsFound.ContainsInKey, kvp.Key);
