@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
     public static readonly IconLibraryDefinition[] Libraries = [
+         new (framework7io_framework7_icons.NameLibrary,framework7io_framework7_icons.IconNames,framework7io_framework7_icons.FromName,framework7io_framework7_icons.MaybeIs,framework7io_framework7_icons.FromNameFileLookup),
          new (microsoft_fluentui_emoji.NameLibrary,microsoft_fluentui_emoji.IconNames,microsoft_fluentui_emoji.FromName,microsoft_fluentui_emoji.MaybeIs,microsoft_fluentui_emoji.FromNameFileLookup),
          new (themesberg_flowbite_icons.NameLibrary,themesberg_flowbite_icons.IconNames,themesberg_flowbite_icons.FromName,themesberg_flowbite_icons.MaybeIs,themesberg_flowbite_icons.FromNameFileLookup),
          new (icons8_flat_Color_icons.NameLibrary,icons8_flat_Color_icons.IconNames,icons8_flat_Color_icons.FromName,icons8_flat_Color_icons.MaybeIs,icons8_flat_Color_icons.FromNameFileLookup),
