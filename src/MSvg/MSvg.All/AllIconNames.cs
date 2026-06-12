@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
        public static readonly IconLibraryDefinition[] Libraries = [
+         new (siemens_ix_icons.NameLibrary,siemens_ix_icons.IconNames,siemens_ix_icons.FromName,siemens_ix_icons.MaybeIs,siemens_ix_icons.FromNameFileLookup),
          new (resolvetosavelives_healthicons.NameLibrary,resolvetosavelives_healthicons.IconNames,resolvetosavelives_healthicons.FromName,resolvetosavelives_healthicons.MaybeIs,resolvetosavelives_healthicons.FromNameFileLookup),
          new (framework7io_framework7_icons.NameLibrary,framework7io_framework7_icons.IconNames,framework7io_framework7_icons.FromName,framework7io_framework7_icons.MaybeIs,framework7io_framework7_icons.FromNameFileLookup),
          new (microsoft_fluentui_emoji.NameLibrary,microsoft_fluentui_emoji.IconNames,microsoft_fluentui_emoji.FromName,microsoft_fluentui_emoji.MaybeIs,microsoft_fluentui_emoji.FromNameFileLookup),
