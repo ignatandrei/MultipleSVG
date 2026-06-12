@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/cugos_geoglyphs/*.svg" />
     <AdditionalFiles Include="Icons/vscode_icons_vscode_icons/*.svg" />
     <AdditionalFiles Include="Icons/basmilius_meteocons/*.svg" />
     <AdditionalFiles Include="Icons/siemens_ix_icons/*.svg" />

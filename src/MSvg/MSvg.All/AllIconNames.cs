@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
        public static readonly IconLibraryDefinition[] Libraries = [
+         new (cugos_geoglyphs.NameLibrary,cugos_geoglyphs.IconNames,cugos_geoglyphs.FromName,cugos_geoglyphs.MaybeIs,cugos_geoglyphs.FromNameFileLookup),
          new (vscode_icons_vscode_icons.NameLibrary,vscode_icons_vscode_icons.IconNames,vscode_icons_vscode_icons.FromName,vscode_icons_vscode_icons.MaybeIs,vscode_icons_vscode_icons.FromNameFileLookup),
          new (basmilius_meteocons.NameLibrary,basmilius_meteocons.IconNames,basmilius_meteocons.FromName,basmilius_meteocons.MaybeIs,basmilius_meteocons.FromNameFileLookup),
          new (siemens_ix_icons.NameLibrary,siemens_ix_icons.IconNames,siemens_ix_icons.FromName,siemens_ix_icons.MaybeIs,siemens_ix_icons.FromNameFileLookup),
