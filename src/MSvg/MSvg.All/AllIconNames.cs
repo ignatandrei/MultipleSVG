@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
        public static readonly IconLibraryDefinition[] Libraries = [
+         new (gravity_ui_icons.NameLibrary,gravity_ui_icons.IconNames,gravity_ui_icons.FromName,gravity_ui_icons.MaybeIs,gravity_ui_icons.FromNameFileLookup),
          new (phosphor_icons_core.NameLibrary,phosphor_icons_core.IconNames,phosphor_icons_core.FromName,phosphor_icons_core.MaybeIs,phosphor_icons_core.FromNameFileLookup),
          new (oclero_qlementine_icons.NameLibrary,oclero_qlementine_icons.IconNames,oclero_qlementine_icons.FromName,oclero_qlementine_icons.MaybeIs,oclero_qlementine_icons.FromNameFileLookup),
          new (icons8_windows_10_icons.NameLibrary,icons8_windows_10_icons.IconNames,icons8_windows_10_icons.FromName,icons8_windows_10_icons.MaybeIs,icons8_windows_10_icons.FromNameFileLookup),

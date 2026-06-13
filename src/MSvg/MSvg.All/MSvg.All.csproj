@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/gravity_ui_icons/*.svg" />
     <AdditionalFiles Include="Icons/phosphor_icons_core/*.svg" />
     <AdditionalFiles Include="Icons/oclero_qlementine_icons/*.svg" />
     <AdditionalFiles Include="Icons/icons8_windows_10_icons/*.svg" />
