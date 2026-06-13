@@ -12,6 +12,7 @@ public sealed record IconLibraryDefinition(
    )
 {
        public static readonly IconLibraryDefinition[] Libraries = [
+         new (oclero_qlementine_icons.NameLibrary,oclero_qlementine_icons.IconNames,oclero_qlementine_icons.FromName,oclero_qlementine_icons.MaybeIs,oclero_qlementine_icons.FromNameFileLookup),
          new (icons8_windows_10_icons.NameLibrary,icons8_windows_10_icons.IconNames,icons8_windows_10_icons.FromName,icons8_windows_10_icons.MaybeIs,icons8_windows_10_icons.FromNameFileLookup),
          new (yessir_web_tech_ginetex_icons.NameLibrary,yessir_web_tech_ginetex_icons.IconNames,yessir_web_tech_ginetex_icons.FromName,yessir_web_tech_ginetex_icons.MaybeIs,yessir_web_tech_ginetex_icons.FromNameFileLookup),
          new (cugos_geoglyphs.NameLibrary,cugos_geoglyphs.IconNames,cugos_geoglyphs.FromName,cugos_geoglyphs.MaybeIs,cugos_geoglyphs.FromNameFileLookup),
