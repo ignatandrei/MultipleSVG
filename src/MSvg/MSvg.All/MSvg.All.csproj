@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/oclero_qlementine_icons/*.svg" />
     <AdditionalFiles Include="Icons/icons8_windows_10_icons/*.svg" />
     <AdditionalFiles Include="Icons/yessir_web_tech_ginetex_icons/*.svg" />
     <AdditionalFiles Include="Icons/cugos_geoglyphs/*.svg" />
