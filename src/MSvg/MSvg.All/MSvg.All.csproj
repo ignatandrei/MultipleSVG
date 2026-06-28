@@ -29,6 +29,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
+    <AdditionalFiles Include="Icons/ya2s_nonicons/*.svg" />
     <AdditionalFiles Include="Icons/dukestreetstudio_zondicons/*.svg" />
     <AdditionalFiles Include="Icons/icons8_WPF_UI_Framework/*.svg" />
     <AdditionalFiles Include="Icons/gravity_ui_icons/*.svg" />
